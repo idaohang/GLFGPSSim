@@ -1,0 +1,34 @@
+# Project: libobsolete
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 01/11/10 23:26
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = obsolete.o
+LINKOBJ   = "obsolete.o"
+LIBS      = -L"C:/wxDevCpp/Lib" -L"../../clibrary" -lm  
+INCS      = -I"C:/wxDevCpp/Include" -I"../../clibrary"
+CXXINCS   = -I"C:/wxDevCpp/lib/gcc/mingw32/3.4.5/include" -I"C:/wxDevCpp/include/c++/3.4.5/backward" -I"C:/wxDevCpp/include/c++/3.4.5/mingw32" -I"C:/wxDevCpp/include/c++/3.4.5" -I"C:/wxDevCpp/include" -I"C:/wxDevCpp/" -I"C:/wxDevCpp/include/common/wx/msw" -I"C:/wxDevCpp/include/common/wx/generic" -I"C:/wxDevCpp/include/common/wx/html" -I"C:/wxDevCpp/include/common/wx/protocol" -I"C:/wxDevCpp/include/common/wx/xml" -I"C:/wxDevCpp/include/common/wx/xrc" -I"C:/wxDevCpp/include/common/wx" -I"C:/wxDevCpp/include/common" -I"../../clibrary"
+RCINCS    = --include-dir "C:/wxDevCpp/include/common"
+BIN       = libobsolete.a
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = ar
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) rcu "$(BIN)" $(LINKOBJ)
+
+obsolete.o: $(GLOBALDEPS) obsolete.c
+	$(CC) -c obsolete.c -o obsolete.o $(CFLAGS)

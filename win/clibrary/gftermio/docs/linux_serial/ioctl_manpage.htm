@@ -1,0 +1,343 @@
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<BASE HREF="http://linux.die.net/man/4/tty_ioctl"><table border=1 width=100%><tr><td><table border=1 bgcolor=#ffffff cellpadding=10 cellspacing=0 width=100% color=#ffffff><tr><td><font face="" color=black size=-1>This is <b><font color=#0039b6>G</font> <font color=#c41200>o</font> <font color=#f3c518>o</font> <font color=#0039b6>g</font> <font color=#30a72f>l</font> <font color=#c41200>e</font></b>'s <a href="http://www.google.com/intl/en/help/features.html#cached"><font color=blue>cache</font></a> of <a href="http://linux.die.net/man/4/tty_ioctl"><font color=blue>http://linux.die.net/man/4/tty_ioctl</font></a> as retrieved on Mar 6, 2008 00:54:27 GMT.<br>
+<b><font color=#0039b6>G</font> <font color=#c41200>o</font> <font color=#f3c518>o</font> <font color=#0039b6>g</font> <font color=#30a72f>l</font> <font color=#c41200>e</font></b>'s cache is the snapshot that we took of the page as we crawled the web.<br>
+The page may have changed since that time.  Click here for the <a href="http://linux.die.net/man/4/tty_ioctl"><font color=blue>current page</font></a> without highlighting.<br>
+This cached page may reference images which are no longer available. Click here for the <A HREF="http://64.233.167.104/search?q=cache:uizMDeFeZAoJ:linux.die.net/man/4/tty_ioctl+linux+DSR+DCD+ioctl&hl=en&gl=us&strip=1"><font color=blue>cached text</font></a> only.<br>To link to or bookmark this page, use the following url: <code>http://www.google.com/search?q=cache:uizMDeFeZAoJ:linux.die.net/man/4/tty_ioctl+linux+DSR+DCD+ioctl&amp;hl=en&amp;ct=clnk&amp;cd=2&amp;gl=us</code></font><br><br><center><font size=-2><i>Google is neither affiliated with the authors of this page nor responsible for its content.</i></font></center></td></tr>
+<tr><td>
+<table border=0 cellpadding=0 cellspacing=0><tr><td><font face="" color=black size=-1>These search terms have been highlighted:&nbsp;</font></td><td bgcolor=#ffff66><b><font face="" color=black size=-1>linux&nbsp;</font></b></td><td bgcolor=#a0ffff><b><font face="" color=black size=-1>dsr&nbsp;</font></b></td><td bgcolor=#99ff99><b><font face="" color=black size=-1>dcd&nbsp;</font></b></td><td bgcolor=#ff9999><b><font face="" color=black size=-1>ioctl&nbsp;</font></b></td></tr></table>
+</td></tr></table></td></tr></table>
+<hr>
+<div style="position:relative">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+
+<title>tty_ioctl(4): ioctls for terminals/serial lines - Linux man page</title>
+<link rel="stylesheet" type="text/css" href="http://static.die.net/style/white.css">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="description" content="The ioctl() call for terminals and serial ports accepts many possible command arguments. Most require a third argument, of varying type, here called argp or arg.">
+</head>
+
+<body bgcolor="#ffffff" text="#333333" link="#660000" vlink="#660000" alink="#000000">
+<div id=bg><div id=content>
+
+<!-- google_ad_section_start -->
+<h1>tty_ioctl(4) - <b style="color:black;background-color:#ffff66">Linux</b> man page</h1>
+
+
+<div id=adright>
+<script language="JavaScript"><!--
+google_ad_client = 'pub-5823754184406795';
+google_alternate_ad_url = "http://ads.die.net/?url=http://linux.die.net/man/4/tty_ioctl&type=right";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_channel = "8016292934";
+google_color_border = ["F7F7F7","FFF7F7"];
+google_color_bg = ["F7F7F7","FFF7F7"];
+google_color_link = "660000";
+google_color_url = "660000";
+google_color_text = "333333";
+// --></script>
+<script language="JavaScript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+
+
+<h2>Name</h2>
+tty <b style="color:black;background-color:#ff9999">ioctl</b> - ioctls for terminals and serial lines
+<h2>Synopsis</h2>
+<p><b>#include &lt;<a href="/include/termios.h" rel="nofollow">termios.h</a>&gt;</b>
+<p><b>int <b style="color:black;background-color:#ff9999">ioctl</b>(int</b> <i>fd</i><b>, int</b> <i>cmd</i><b>, ...);</b>
+<h2>Description</h2>
+The <b><b style="color:black;background-color:#ff9999">ioctl</b></b>() call for terminals and serial ports accepts many possible command arguments.
+Most require a third argument, of varying type, here called <i>argp</i> or <i>arg</i>.
+<p>Use of <i><b style="color:black;background-color:#ff9999">ioctl</b></i> makes for non-portable programs. Use the POSIX interface described in <i><b><a href="/man/3/termios">termios</a></b>(3)</i> whenever possible.
+<h3>Get and Set Terminal Attributes</h3>
+<dl compact>
+<dt><b>TCGETS    struct termios *</b><i>argp</i>
+<dd>Equivalent to <i>tcgetattr(fd, argp)</i>.<br>
+Get the current serial port settings.
+<dt><b>TCSETS    const struct termios *</b><i>argp</i>
+<dd>Equivalent to <i>tcsetattr(fd, TCSANOW, argp)</i>.<br>
+Set the current serial port settings.
+<dt><b>TCSETSW    const struct termios *</b><i>argp</i>
+<dd>Equivalent to <i>tcsetattr(fd, TCSADRAIN, argp)</i>.<br>
+Allow the output buffer to drain, and set the current serial port settings.
+<dt><b>TCSETSF    const struct termios *</b><i>argp</i>
+<dd>Equivalent to <i>tcsetattr(fd, TCSAFLUSH, argp)</i>.<br>
+Allow the output buffer to drain, discard pending input, and set the current serial port settings.</dl>
+<p>The following four ioctls are just like TCGETS, TCSETS, TCSETSW, TCSETSF, except that they take a <i>struct termio *</i> instead of a <i>struct termios
+*</i>.
+<dl compact>
+<dt><b>TCGETA    struct termio *</b><i>argp</i>
+<dt><b>TCSETA    const struct termio *</b><i>argp</i>
+<dt><b>TCSETAW    const struct termio *</b><i>argp</i>
+<dt><b>TCSETAF    const struct termio *</b><i>argp</i></dl>
+<h3>Locking the termios structure</h3>
+The termios structure of a tty can be locked. The lock is itself a termios
+structure, with non-zero bits or fields indicating a locked value.
+<dl compact>
+<dt><b>TIOCGLCKTRMIOS    struct termios *</b><i>argp</i>
+<dd>Gets the locking status of the termios structure of the terminal.
+<dt><b>TIOCSLCKTRMIOS    const struct termios *</b><i>argp</i>
+<dd>Sets the locking status of the termios structure of the terminal. Only root can do this.</dl>
+<h3>Get and Set Window Size</h3>
+Window sizes are kept in the kernel, but not used by the kernel (except in the case
+of virtual consoles, where the kernel will update the window size when the size of the virtual console changes, e.g. by loading a new font).
+<dl compact>
+<dt><b>TIOCGWINSZ    struct winsize *</b><i>argp</i>
+<dd>Get window size.
+<dt><b>TIOCSWINSZ    const struct winsize *</b><i>argp</i>
+<dd>Set window size.</dl>
+<p>The
+<p>struct used by these ioctls is defined as
+<pre class="code">struct winsize {
+        unsigned short ws_row;
+        unsigned short ws_col;
+        unsigned short ws_xpixel;   /* unused */
+        unsigned short ws_ypixel;   /* unused */
+};</pre>When the window size changes, a SIGWINCH signal is sent to the foreground process group.
+<h3>Sending a Break</h3>
+<dl compact>
+<dt><b>TCSBRK    int</b> <i>arg</i>
+<dd>Equivalent to <i>tcsendbreak(fd, arg)</i>.<br>
+If the terminal is using asynchronous serial data transmission, and <i>arg</i> is zero, then send a break (a stream of zero bits) for between 0.25 and 0.5
+seconds. If the terminal is not using asynchronous serial data transmission, then either a break is sent, or the function returns without doing anything. When
+<i>arg</i> is non-zero, nobody knows what will happen.
+<p>(SVr4, UnixWare, Solaris, <b style="color:black;background-color:#ffff66">Linux</b> treat <i>tcsendbreak(fd,arg)</i> with non-zero <i>arg</i> like <i>tcdrain(fd)</i>. SunOS treats <i>arg</i> as a multiplier,
+and sends a stream of bits <i>arg</i> times as long as done for zero <i>arg</i>. DG/UX and AIX treat <i>arg</i> (when non-zero) as a timeinterval measured in
+milliseconds. HP-UX ignores <i>arg</i>.)
+<dt><b>TCSBRKP    int</b> <i>arg</i>
+<dd>So-called "POSIX version" of TCSBRK. It treats non-zero <i>arg</i> as a timeinterval measured in deciseconds, and does nothing when the driver does not
+support breaks.
+<dt><b>TIOCSBRK    void</b>
+<dd>Turn break on, that is, start sending zero bits.
+<dt><b>TIOCCBRK    void</b>
+<dd>Turn break off, that is, stop sending zero bits.</dl>
+<h3>Software flow control</h3>
+<dl compact>
+<dt><b>TCXONC    int</b> <i>arg</i>
+<dd>Equivalent to <i>tcflow(fd, arg)</i>.<br>
+See <i><b><a href="/man/3/tcflow">tcflow</a></b>(3)</i> for the argument values TCOOFF, TCOON, TCIOFF, TCION.</dl>
+<h3>Buffer count and flushing</h3>
+<dl compact>
+<dt><b>FIONREAD    int *</b><i>argp</i>
+<dd>Get the number of bytes in the input buffer.
+<dt><b>TIOCINQ    int *</b><i>argp</i>
+<dd>Same as FIONREAD.
+<dt><b>TIOCOUTQ    int *</b><i>argp</i>
+<dd>Get the number of bytes in the output buffer.
+<dt><b>TCFLSH    int</b> <i>arg</i>
+<dd>Equivalent to <i>tcflush(fd, arg)</i>.<br>
+See <i><b><a href="/man/3/tcflush">tcflush</a></b>(3)</i> for the argument values TCIFLUSH, TCOFLUSH, TCIOFLUSH.</dl>
+<h3>Faking input</h3>
+<dl compact>
+<dt><b>TIOCSTI    const char *</b><i>argp</i>
+<dd>Insert the given byte in the input queue.</dl>
+<h3>Redirecting console output</h3>
+<dl compact>
+<dt><b>TIOCCONS    void</b>
+<dd>Redirect output that would have gone to <i>/dev/console</i> or <i>/dev/tty0</i> to the given tty. If that was a pty master, send it to the slave. Anybody
+can do this as long as the output was not redirected yet. If it was redirected already EBUSY is returned, but root may stop redirection by using this <b style="color:black;background-color:#ff9999">ioctl</b>
+with <i>fd</i> pointing at <i>/dev/console</i> or <i>/dev/tty0</i>.</dl>
+<h3>Controlling tty</h3>
+<dl compact>
+<dt><b>TIOCSCTTY    int</b> <i>arg</i>
+<dd>Make the given tty the controlling tty of the current process. The current process must be a session leader and not have a controlling tty already. If this
+tty is already the controlling tty of a different session group then the <b style="color:black;background-color:#ff9999">ioctl</b> fails with EPERM, unless the caller is root and <i>arg</i> equals 1, in which
+case the tty is stolen, and all processes that had it as controlling tty lose it.
+<dt><b>TIOCNOTTY    void</b>
+<dd>If the given tty was the controlling tty of the current process, give up this controlling tty. If the process was session leader, then send SIGHUP and
+SIGCONT to the foreground process group and all processes in the current session lose their controlling tty.</dl>
+<h3>Process group and session ID</h3>
+<dl compact>
+<dt><b>TIOCGPGRP    pid_t *</b><i>argp</i>
+<dd>When successful, equivalent to <i>*argp = tcgetpgrp(fd)</i>.<br>
+Get the process group ID of the foreground process group on this tty.
+<dt><b>TIOCSPGRP    const pid_t *</b><i>argp</i>
+<dd>Equivalent to <i>tcsetpgrp(fd, *argp)</i>.<br>
+Set the foreground process group ID of this tty.
+<dt><b>TIOCGSID    pid_t *</b><i>argp</i>
+<dd>Get the session ID of the given tty. This will fail with ENOTTY in case the tty is not a master pty and not our controlling tty. Strange.</dl>
+<h3>Exclusive mode</h3>
+<dl compact>
+<dt><b>TIOCEXCL    void</b>
+<dd>Put the tty into exclusive mode. No further <i><b><a href="/man/2/open">open</a></b>(2)</i> operations on the terminal are permitted. (They will fail with EBUSY, except for root.)
+<dt><b>TIOCNXCL    void</b>
+<dd>Disable exclusive mode.</dl>
+<h3>Line discipline</h3>
+<dl compact>
+<dt><b>TIOCGETD    int *</b><i>argp</i>
+<dd>Get the line discipline of the tty.
+<dt><b>TIOCSETD    const int *</b><i>argp</i>
+<dd>Set the line discipline of the tty.</dl>
+<h3>Pseudo-tty ioctls</h3>
+<dl compact>
+<dt><b>TIOCPKT    const int *</b><i>argp</i>
+<dd>Enable (when *<i>argp</i> is non-zero) or disable packet mode. Can be applied to the master side of a pseudo-terminal only (and will return ENOTTY
+otherwise). In packet mode, each subsequent <i><b><a href="/man/2/read">read</a></b>(2)</i> will return a packet that either contains a single non-zero control byte, or has a single
+byte containing zero ('' ') followed by data written on the slave side of the pty. If the first byte is not TIOCPKT_DATA (0), it is an OR of one or more of the
+following bits:
+<pre class="code">TIOCPKT_FLUSHREAD   The read queue for the terminal is flushed.
+TIOCPKT_FLUSHWRITE  The write queue for the terminal is flushed.
+TIOCPKT_STOP        Output to the terminal is stopped.
+TIOCPKT_START       Output to the terminal is restarted.
+TIOCPKT_DOSTOP      t_stopc is '^S' and t_startc is '^Q'.
+TIOCPKT_NOSTOP      the start and stop characters are not '^S/^Q'.</pre>While this mode is in use, the presence of control status information to be read from the master side may be detected by a <i><b><a href="/man/2/select">select</a></b>(2)</i> for
+exceptional conditions.
+<p>This mode is used by <i><b><a href="/man/1/rlogin">rlogin</a></b>(1)</i> and <i><b><a href="/man/8/rlogind">rlogind</a></b>(8)</i> to implement a remote-echoed, locally '^S/^Q' flow-controlled remote login.
+<p>The BSD ioctls TIOCSTOP, TIOCSTART, TIOCUCNTL, TIOCREMOTE have not been implemented under <b style="color:black;background-color:#ffff66">Linux</b>.</dl>
+<h3>Modem control</h3>
+<dl compact>
+<dt><b>TIOCMGET    int *</b><i>argp</i>
+<dd>get the status of modem bits.
+<dt><b>TIOCMSET    const int *</b><i>argp</i>
+<dd>set the status of modem bits.
+<dt><b>TIOCMBIC    const int *</b><i>argp</i>
+<dd>clear the indicated modem bits.
+<dt><b>TIOCMBIS    const int *</b><i>argp</i>
+<dd>set the indicated modem bits.</dl>
+<p>Bits used by these four ioctls:
+<pre class="code">TIOCM_LE        <b style="color:black;background-color:#a0ffff">DSR</b> (data set ready/line enable)
+TIOCM_DTR       DTR (data terminal ready)
+TIOCM_RTS       RTS (request to send)
+TIOCM_ST        Secondary TXD (transmit)
+TIOCM_SR        Secondary RXD (receive)
+TIOCM_CTS       CTS (clear to send)
+TIOCM_CAR       <b style="color:black;background-color:#99ff99">DCD</b> (data carrier detect)
+TIOCM_CD         see TIOCM_CAR
+TIOCM_RNG       RNG (ring)
+TIOCM_RI         see TIOCM_RNG
+TIOCM_DSR       <b style="color:black;background-color:#a0ffff">DSR</b> (data set ready)</pre>
+<h3>Marking a line as local</h3>
+<dl compact>
+<dt><b>TIOCGSOFTCAR    int *</b><i>argp</i>
+<dd>("Get software carrier flag") Get the status of the CLOCAL flag in the c_cflag field of the termios structure.
+<dt><b>TIOCSSOFTCAR    const int *</b><i>argp</i>
+<dd>("Set software carrier flag") Set the CLOCAL flag in the termios structure when *<i>argp</i> is non-zero, and clear it otherwise.</dl>
+<p>If the CLOCAL flag for a line is off, the hardware carrier detect (<b style="color:black;background-color:#99ff99">DCD</b>) signal is significant, and an <i><b><a href="/man/2/open" rel="nofollow">open</a></b>(2)</i> of the corresponding tty will
+block until <b style="color:black;background-color:#99ff99">DCD</b> is asserted, unless the O_NONBLOCK flag is given. If CLOCAL is set, the line behaves as if <b style="color:black;background-color:#99ff99">DCD</b> is always asserted. The software carrier flag is
+usually turned on for local devices, and is off for lines with modems.
+<h3><b style="color:black;background-color:#ffff66">Linux</b> specific</h3>
+For the TIOCLINUX <b style="color:black;background-color:#ff9999">ioctl</b>, see <i><b><a href="console_ioctl">console_ioctl</a></b>(4)</i>.
+<h3>Kernel debugging</h3>
+<p><b>#include &lt;<a href="/include/linux/tty.h" rel="nofollow"><b style="color:black;background-color:#ffff66">linux</b>/tty.h</a>&gt;</b>
+<dl compact>
+<dt><b>TIOCTTYGSTRUCT    struct tty_struct *</b><i>argp</i>
+<dd>Get the tty_struct corresponding to <i>fd</i>.</dl>
+<h2>Return Value</h2>
+The <b><b style="color:black;background-color:#ff9999">ioctl</b></b>() system call returns 0 on success. On error it returns -1 and sets
+<i>errno</i> appropriately.
+<h2>Errors</h2>
+<dl compact>
+<dt><b>ENOIOCTLCMD</b>
+<dd>Unknown command.
+<dt><b>EINVAL</b>
+<dd>Invalid command parameter.
+<dt><b>EPERM</b>
+<dd>Insufficient permission.
+<dt><b>ENOTTY</b>
+<dd>Inappropriate <i>fd</i>.</dl>
+<h2>Example</h2>
+Check the condition of DTR on the serial port.
+<pre class="code">#include &lt;<a href="/include/termios.h" rel="nofollow">termios.h</a>&gt;
+#include &lt;<a href="/include/fcntl.h" rel="nofollow">fcntl.h</a>&gt;
+#include &lt;<a href="/include/sys/ioctl.h" rel="nofollow">sys/<b style="color:black;background-color:#ff9999">ioctl</b>.h</a>&gt;
+main() {
+    int fd, serial;
+    fd = open("/dev/ttyS0", O_RDONLY);
+    <b style="color:black;background-color:#ff9999">ioctl</b>(fd, TIOCMGET, &amp;serial);
+    if (serial &amp; TIOCM_DTR)
+        puts("TIOCM_DTR is not set");
+    else
+        puts("TIOCM_DTR is set");
+    close(fd);
+}</pre>
+<h2>See Also</h2>
+<i><b><a href="/man/2/ioctl"><b style="color:black;background-color:#ff9999">ioctl</b></a></b>(2)</i>, <i><b><a href="/man/3/termios" rel="nofollow">termios</a></b>(3)</i>, <i><b><a href="console_ioctl" rel="nofollow">console_ioctl</a></b>(4)
+<b><a href="/man/7/pty">pty</a></b>(7)</i>
+
+<!-- google_ad_section_end -->
+<h2>REFERENCED BY<a name="referenced">&nbsp;</a></h2>
+<b><a href="/man/7/termio" rel="nofollow">termio</a></b>(7)
+
+<div id=adbottom class=ad>
+<script language="JavaScript"><!--
+google_ad_client = 'pub-5823754184406795';
+google_alternate_ad_url = "http://ads.die.net/?url=http://linux.die.net/man/4/tty_ioctl&type=bottom";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel = "3984337005";
+google_color_border = ["FFFFFF","F7F7F7","FFF7F7"];
+google_color_bg = ["FFFFFF","F7F7F7","FFF7F7"];
+google_color_link = "660000";
+google_color_url = "660000";
+google_color_text = "333333";
+// --></script>
+<script language="JavaScript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
+
+
+</div>
+<div id=menu>
+
+<a href="http://www.die.net/"><img
+src="http://static.die.net/style/logo.gif" alt="die.net" width=119 height=121 border=0></a>
+
+
+<dl><dd>
+<form id="searchbox_010481055930024740680:oyi6cjh0aps" action="http://www.google.com/cse">
+<input type="hidden" name="cx" value="010481055930024740680:oyi6cjh0aps" />
+<label><a rel="nofollow" href="http://www.die.net/search/">site search</a></label>
+<input name="q" type="text" size="10" />
+<input type="hidden" name="sa" value="Search" />
+<span style="font-family:Arial, Helvetica, sans-serif; font-size:75%">Google Custom Search</span>
+<input type="hidden" name="cof" value="FORID:9" />
+</form>
+<script type="text/javascript">
+<!--
+document.forms["searchbox_010481055930024740680:oyi6cjh0aps"].action = "http://www.die.net/search/";
+// -->
+</script>
+</dd></dl>
+
+
+
+
+<dl>
+<dt>Library</dt>
+<dd><a rel="nofollow" href="http://dictionary.die.net/">online dictionary</a></dd>
+<dd><a rel="nofollow" href="http://linux.die.net/"><b style="color:black;background-color:#ffff66">linux</b> docs</a></dd>
+<dd><a rel="nofollow" href="http://linux.die.net/man/"><b style="color:black;background-color:#ffff66">linux</b> man pages</a></dd>
+<dd><a rel="nofollow" href="http://www.die.net/musings/page_load_time/">page load time</a></dd>
+</dl>
+<dl>
+<dt>Toys</dt>
+<dd><a rel="nofollow" href="http://www.die.net/earth/">world sunlight</a></dd>
+<dd><a rel="nofollow" href="http://www.die.net/moon/">moon phase</a></dd>
+<dd><a rel="nofollow" href="http://trace.die.net/">trace explorer</a></dd>
+<dd><a rel="nofollow" href="http://www.ishar.com/">free online rpg</a></dd>
+</dl>
+
+
+<dl>
+<dt><a href="/man/4/"><img src="http://static.die.net/style/back.gif" alt="Back"
+width=20 height=22 border=0></a></dt>
+</dl>
+</div></div>
+<script type="text/javascript">
+<!--
+if (top.location != self.location) top.location = self.location;
+if (document.referrer.match(/(search|google\.|yahoo\.|live\.|msn\.|ask\.).*[?&][pq]=[^&]+/)) document.write('<scr'+'ipt src="http://static.die.net/style/highlight.js"><\/scr'+'ipt>');
+// -->
+</script>
+</body>
+</html>
+

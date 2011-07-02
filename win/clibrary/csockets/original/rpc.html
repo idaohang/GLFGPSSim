@@ -1,0 +1,78 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Transferring Binary Data</title></head><body background="rpc_files/drcbgd.gif" bgcolor="#000000" text="#40ff40" vlink="#888888" link="#00ffff"><center>
+
+ <h1>
+  <img src="rpc_files/grndraghd.gif">
+  <font color="white">Transferring Binary Data</font>
+  <img src="rpc_files/grndraghd.gif">
+ </h1>
+ Authors: Charles E. Campbell, Jr.
+</center>
+<p><font size="+1">
+Transferring binary data such as floats, doubles, structs, unions, etc via sockets
+unfortunately isn't straightforward.  The problem is that different architectures
+have different ways to represent such things; their structs, for example, may contain
+"holes" to promote word alignment restrictions.  In other words, although the
+Simple Sockets Library will easily transfer binary images (using Sread(), Sreadbytes(),
+and Swrite()), different hardware and/or operating systems may interpret such binaries
+differently.
+</font></p><p>
+<font size="+1">One may transfer such entities between hosts with the same architecture and o/s
+generally without problems.
+</font></p><p>
+<font size="+1">When one has a non-heterogeneous admixture of platforms and operating systems, one
+may address this binary transfer problem in several ways.
+</font></p><p>
+<font size="+1">For such things as short (two-byte) and long (four-byte) integers, the sockets
+libraries support functions such as 
+</font></p><p>
+</p><center><table>
+ <tbody><tr><td>Network to Host</td><td>Host to Network</td><td>
+ </td></tr><tr><td>ntohs()</td><td>htons()</td><td>short integers</td></tr>
+ <tr><td>ntohl()</td><td>htonl()</td><td>long integers</td></tr>
+</tbody></table></center>
+<p>
+<font size="+1">to preserve meaning (in this case, byte order).
+The htons() and htonl() functions convert a host-format integer into a network standard form.
+whereas the ntohs() and ntohl() functions convert a network-format integer into the current host's standard form.
+However, dealing with other entities is not as straightforward.
+</font></p><p>
+<font size="+1">A general method for handling floats, doubles, structs, etc involves using RPC (remote procedure call), developed
+by Sun.  There are books on RPC (ie. "Power Programming with RPC", by John Bloomer, O'Reilly, ISBN 0-937175-77-3).
+There are also a number of resources on the web for transferring such data:
+</font></p><p>
+</p><center><table>
+  <tbody><tr><td> <a href="http://www.cs.ncl.ac.uk/events/anniversaries/40th/webbook/distributed/srm298/srm298.html"> SRM298 </a>       </td></tr>
+  <tr><td> <a href="http://www.sei.cmu.edu/str/descriptions/rpc.html"> RPC Descriptions </a>                                     </td></tr>
+  <tr><td> <a href="http://www.coda.cs.cmu.edu/doc/html/rpc2_manual.html"> RPC Manual </a>                                       </td></tr>
+  <tr><td> <a href="http://playground.sun.com/pub/rpc"> Sun Playground RPC </a>                                                  </td></tr>
+  <tr><td> <a href="http://www.cs.brown.edu/publications/techreports/reports/CS-92-60.html"> Brown U's CS-92-60 Tech Report </a> </td></tr>
+  <tr><td> <a href="http://www.cs.brown.edu/publications/techreports/reports/CS-93-59.html"> Brown U's CS-93-59 Tech Report </a> </td></tr>
+</tbody></table></center>
+<hr>
+<center><table width="100%">
+ <tbody><tr><td align="center"> <a href="http://mysite.verizon.net/astronaut/index.html"><font size="-1">Home</font></a><font size="-1"> </font></td><td align="center"> <font size="-1">
+ You are visitor
+<!-- <img src="http://cgibin.erols.com/cgi-bin/Count.cgi?df=astrosslindx&ft=3&tr=N&dd=D&md=6">-->
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+var sc_project=315209; 
+var sc_partition=1; 
+</script>
+
+<script type="text/javascript" language="javascript" src="rpc_files/counter.js"></script><span class="statcounter"><a class="statcounter" href="http://www.statcounter.com/" target="_blank"><img src="rpc_files/t.png" alt="StatCounter - Free Web Tracker and Counter" border="0"></a></span>
+<noscript><a href="http://www.statcounter.com/free_hit_counter.html"
+target="_blank"><img
+src="http://c2.statcounter.com/counter.php?sc_project=315209&amp;amp;java=0"
+alt="free page hit counter" border="0"></a> </noscript>
+<!-- End of StatCounter Code -->
+ </font></td><td></td></tr>
+</tbody></table></center>
+<p>
+</p><center><table width="100%">
+ <tbody><tr><td align="left">  <font size="-1"><em>Last Modified </em><!-- DATE -->Jul 13, 2007 03:14:27 PM</font> </td>
+     <td align="right"> <font size="-1"><em></em><!-- COPYRIGHT -->© 2007, Charles E Campbell, Jr.</font><br> </td>
+	 <td></td></tr>
+</tbody></table></center>
+</body></html>

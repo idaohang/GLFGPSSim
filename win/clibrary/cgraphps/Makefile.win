@@ -1,0 +1,118 @@
+# Project: libcgraphps
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 01/11/10 23:29
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = bgdash.o gylog.o bginit.o bgshow.o bgstart.o cg_newfuncs.o cgprint.o cgsave.o gaxlabel.o gbott.o gcord.o gfont.o ggraycolor.o glcmp.o gmark.o gmesh.o gmlin.o gorig.o gprim.o grmle.o grset.o gstrk.o gstyl.o gtext.o gtrnc.o gwdth.o gxaxs.o gxlog.o gyaxs.o
+LINKOBJ   = "bgdash.o" "gylog.o" "bginit.o" "bgshow.o" "bgstart.o" "cg_newfuncs.o" "cgprint.o" "cgsave.o" "gaxlabel.o" "gbott.o" "gcord.o" "gfont.o" "ggraycolor.o" "glcmp.o" "gmark.o" "gmesh.o" "gmlin.o" "gorig.o" "gprim.o" "grmle.o" "grset.o" "gstrk.o" "gstyl.o" "gtext.o" "gtrnc.o" "gwdth.o" "gxaxs.o" "gxlog.o" "gyaxs.o"
+LIBS      = -L"C:/wxDevCpp/Lib" -lm  
+INCS      = -I"C:/wxDevCpp/Include"
+CXXINCS   = -I"C:/wxDevCpp/lib/gcc/mingw32/3.4.5/include" -I"C:/wxDevCpp/include/c++/3.4.5/backward" -I"C:/wxDevCpp/include/c++/3.4.5/mingw32" -I"C:/wxDevCpp/include/c++/3.4.5" -I"C:/wxDevCpp/include" -I"C:/wxDevCpp/" -I"C:/wxDevCpp/include/common/wx/msw" -I"C:/wxDevCpp/include/common/wx/generic" -I"C:/wxDevCpp/include/common/wx/html" -I"C:/wxDevCpp/include/common/wx/protocol" -I"C:/wxDevCpp/include/common/wx/xml" -I"C:/wxDevCpp/include/common/wx/xrc" -I"C:/wxDevCpp/include/common/wx" -I"C:/wxDevCpp/include/common"
+RCINCS    = --include-dir "C:/wxDevCpp/include/common"
+BIN       = libcgraphps.a
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = ar
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) rcu "$(BIN)" $(LINKOBJ)
+
+bgdash.o: $(GLOBALDEPS) bgdash.c
+	$(CC) -c bgdash.c -o bgdash.o $(CFLAGS)
+
+gylog.o: $(GLOBALDEPS) gylog.c
+	$(CC) -c gylog.c -o gylog.o $(CFLAGS)
+
+bginit.o: $(GLOBALDEPS) bginit.c
+	$(CC) -c bginit.c -o bginit.o $(CFLAGS)
+
+bgshow.o: $(GLOBALDEPS) bgshow.c
+	$(CC) -c bgshow.c -o bgshow.o $(CFLAGS)
+
+bgstart.o: $(GLOBALDEPS) bgstart.c
+	$(CC) -c bgstart.c -o bgstart.o $(CFLAGS)
+
+cg_newfuncs.o: $(GLOBALDEPS) cg_newfuncs.c
+	$(CC) -c cg_newfuncs.c -o cg_newfuncs.o $(CFLAGS)
+
+cgprint.o: $(GLOBALDEPS) cgprint.c
+	$(CC) -c cgprint.c -o cgprint.o $(CFLAGS)
+
+cgsave.o: $(GLOBALDEPS) cgsave.c
+	$(CC) -c cgsave.c -o cgsave.o $(CFLAGS)
+
+gaxlabel.o: $(GLOBALDEPS) gaxlabel.c
+	$(CC) -c gaxlabel.c -o gaxlabel.o $(CFLAGS)
+
+gbott.o: $(GLOBALDEPS) gbott.c
+	$(CC) -c gbott.c -o gbott.o $(CFLAGS)
+
+gcord.o: $(GLOBALDEPS) gcord.c
+	$(CC) -c gcord.c -o gcord.o $(CFLAGS)
+
+gfont.o: $(GLOBALDEPS) gfont.c
+	$(CC) -c gfont.c -o gfont.o $(CFLAGS)
+
+ggraycolor.o: $(GLOBALDEPS) ggraycolor.c
+	$(CC) -c ggraycolor.c -o ggraycolor.o $(CFLAGS)
+
+glcmp.o: $(GLOBALDEPS) glcmp.c
+	$(CC) -c glcmp.c -o glcmp.o $(CFLAGS)
+
+gmark.o: $(GLOBALDEPS) gmark.c
+	$(CC) -c gmark.c -o gmark.o $(CFLAGS)
+
+gmesh.o: $(GLOBALDEPS) gmesh.c
+	$(CC) -c gmesh.c -o gmesh.o $(CFLAGS)
+
+gmlin.o: $(GLOBALDEPS) gmlin.c
+	$(CC) -c gmlin.c -o gmlin.o $(CFLAGS)
+
+gorig.o: $(GLOBALDEPS) gorig.c
+	$(CC) -c gorig.c -o gorig.o $(CFLAGS)
+
+gprim.o: $(GLOBALDEPS) gprim.c
+	$(CC) -c gprim.c -o gprim.o $(CFLAGS)
+
+grmle.o: $(GLOBALDEPS) grmle.c
+	$(CC) -c grmle.c -o grmle.o $(CFLAGS)
+
+grset.o: $(GLOBALDEPS) grset.c
+	$(CC) -c grset.c -o grset.o $(CFLAGS)
+
+gstrk.o: $(GLOBALDEPS) gstrk.c
+	$(CC) -c gstrk.c -o gstrk.o $(CFLAGS)
+
+gstyl.o: $(GLOBALDEPS) gstyl.c
+	$(CC) -c gstyl.c -o gstyl.o $(CFLAGS)
+
+gtext.o: $(GLOBALDEPS) gtext.c
+	$(CC) -c gtext.c -o gtext.o $(CFLAGS)
+
+gtrnc.o: $(GLOBALDEPS) gtrnc.c
+	$(CC) -c gtrnc.c -o gtrnc.o $(CFLAGS)
+
+gwdth.o: $(GLOBALDEPS) gwdth.c
+	$(CC) -c gwdth.c -o gwdth.o $(CFLAGS)
+
+gxaxs.o: $(GLOBALDEPS) gxaxs.c
+	$(CC) -c gxaxs.c -o gxaxs.o $(CFLAGS)
+
+gxlog.o: $(GLOBALDEPS) gxlog.c
+	$(CC) -c gxlog.c -o gxlog.o $(CFLAGS)
+
+gyaxs.o: $(GLOBALDEPS) gyaxs.c
+	$(CC) -c gyaxs.c -o gyaxs.o $(CFLAGS)

@@ -1,0 +1,113 @@
+NOTE: A LaTeX version of this document is also included in this distribution.
+
+Mental EXPlosion proudly presents:
+
+			Linux-conio a conio.h for Linux.
+                                  Version 1.02
+INDEX of this readme:
+
+1) What it is
+2) Installation and how to use it
+3) Some technical information
+4) Copyright, author, bug reports etc...
+
+
+1) What it is
+The conio.h is a header file for a library which is used for a lots of 
+keyboard input and screen output functions under DOS C-compilers.
+Linux has got the curses library to do this job.
+But the curses library is somewhat incompatible to the conio functions.
+If you want to port a text-based DOS program which was written in C or C++
+to Linux you'll be surprised of the lots of work it costs !
+Well, we did the work for you - here you have a nearly complete implementation 
+of the DOS conio.h for Linux !
+If you don't know by now what that means, you can forget this an de-install this
+thing - this is just for people needing it.
+If you want to start C or C++ programming only for Linux - then start to learn
+how to use the curses library !
+
+2) Installation and how to use it.
+Installation:
+First of all: Install ncurses ! 
+(You can get it from: ftp.netcom.com /pub/zm/zmbenhal/ncurses)
+This version of the conio.h was tested with ncurses 1.9.9e - 
+there are known problems with earlier version of ncurses - use linux-conio 1.00 if you have troubles compiling conio.h with an earlier version of ncurses !
+
+Do a "make" followed by a "make install" and do what it says.
+If the "make" fails edit the Makefile and set the correct path to the
+variable CURSESDIR - the default is: CURSESDIR = /usr/local
+How to use it:
+When the files libconio.a etc... have been created and installed you can now
+try to port a DOS text-based program to Linux.
+Please make sure that no other operating system specific functions are used in 
+there such as functions of the libraries "dos.h" or "i86.h".
+To compile the program you must type something like:
+gxx -LCURSESDIR -LCONIODIR -ICONIODIR -ICURSESDIR FILE -lconio -lncurses 
+For example:
+gcc -L/usr/local/lib -I/usr/local/include/ncurses -I/usr/local/include myprog.c 
+-lconio -lncurses
+
+3) Some technical information:
+IMPLEMENTED FUNCTIONS:
+All functions defined in the conio.h of Watcom C++ 10.x are implemented.
+All functions defined in the conio.h of Borland C++ 3.10 are implemented except:
+puttext(), gettext() and movetext()
+
+DIFFERENCES BETWEEN THE LINUX-CONIO AND DOS BASED CONIO.H's
+A)
+Before using any function of the linux-conio please call initconio() !
+This is done automatically when calling a conio-function uninitialised, 
+but it's better if you do this at the start of the program !
+Please also call doneconio() before the end of your program - this is not done
+automatically, but makes sure that the terminal settings are reset to normal
+state.
+If you only use inp(), inpw(), inpd(), outp(), outpw() and / or outpd() you 
+won't have to call initconio() or doneconio() !
+ATTENTION: In order to use the inp etc... and outp etc... functions you must
+be superuser when calling the program !       
+(Or the superuser must "chmod +s" the executable !)
+
+B)
+Please be careful when using textattributes !
+They may differ from DOS-standard ! We've tried a lot to make them equal, but 
+we are not sure - please try them before using them. 
+That is especially meant for the function textattr() and for the return value
+inforec->attribute of gettextinfo().
+The return value inforec->normattr of gettextinfo will be garbage ! Please
+try not to use it - this is not a bug, but there just no technical possibility
+to implement it, because we can't know the values of the colorpairs before 
+starting conio.h !
+     
+C)
+The user of your application will get a warning message if his terminal does 
+not support colors.
+If you don't want this, set the variable color_warning to 0 before calling 
+initconio().
+
+D) The window() function should only be used for ONE window, since ncurses' wind
+ow conception is totally different from DOS.
+A better idea is to create subwindows to conio_scr. You must use the ncurses functions directly for this.
+
+4) Copyright, author, bug reports etc...
+The linux-conio.h is copyright (c) 1996,97 by Fractor / Mental EXPlosion.
+Look at our home page to get more information on Mental EXPlosion 
+http://www.obh.snafu.de/~marte/friends/mxp.html
+The linux-conio can be copied and used freely as described in the GNU LIBRARY
+PUBLIC LICENSE Version 2.00 (GLPL).
+ATTENTION:
+As the linux-conio bases on ncurses you must also follow the copyright terms
+of ncurses when using the conio.h !
+ 
+If you find a bug, report it to: fractor@germanymail.com
+If you have no Internet please report it to: 
+Gerald Friedland @ 2:2410/252 in Fido Net 
+(But response may take long...)
+Questions, enhancements, etc... also go to: fractor@germanymail.com
+Thanx go to: Mark Hanh and Rich Cochran for finding a solution to the inpw/inpd bug !
+
+Trademarks etc... are trademarks of their owners and are not specially marked
+as such.
+
+Linux is free - please fell free to use and support it !
+Remember: Any ported program to Linux is better than its DOS equivalent !
+

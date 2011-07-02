@@ -1,0 +1,130 @@
+# Project: libcsockets
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 01/11/10 23:29
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = cprt.o swrite.o error.o fopenv.o outofmem.o rdcolor.o saccept.o sclose.o sgets.o sinit.o smaskwait.o smkskt.o sopen.o sopenv.o speek.o speeraddr.o speername.o sprintf.o sprt.o sprtskt.o sputs.o sread.o sreadbytes.o srmsrvr.o srmtrblk.o sscanf.o stest.o stimeoutwait.o stpblk.o stpnxt.o strnxtfmt.o svprintf.o swait.o
+LINKOBJ   = "cprt.o" "swrite.o" "error.o" "fopenv.o" "outofmem.o" "rdcolor.o" "saccept.o" "sclose.o" "sgets.o" "sinit.o" "smaskwait.o" "smkskt.o" "sopen.o" "sopenv.o" "speek.o" "speeraddr.o" "speername.o" "sprintf.o" "sprt.o" "sprtskt.o" "sputs.o" "sread.o" "sreadbytes.o" "srmsrvr.o" "srmtrblk.o" "sscanf.o" "stest.o" "stimeoutwait.o" "stpblk.o" "stpnxt.o" "strnxtfmt.o" "svprintf.o" "swait.o"
+LIBS      = -L"C:/wxDevCpp/Lib" -lm  
+INCS      = -I"C:/wxDevCpp/Include"
+CXXINCS   = -I"C:/wxDevCpp/lib/gcc/mingw32/3.4.5/include" -I"C:/wxDevCpp/include/c++/3.4.5/backward" -I"C:/wxDevCpp/include/c++/3.4.5/mingw32" -I"C:/wxDevCpp/include/c++/3.4.5" -I"C:/wxDevCpp/include" -I"C:/wxDevCpp/" -I"C:/wxDevCpp/include/common/wx/msw" -I"C:/wxDevCpp/include/common/wx/generic" -I"C:/wxDevCpp/include/common/wx/html" -I"C:/wxDevCpp/include/common/wx/protocol" -I"C:/wxDevCpp/include/common/wx/xml" -I"C:/wxDevCpp/include/common/wx/xrc" -I"C:/wxDevCpp/include/common/wx" -I"C:/wxDevCpp/include/common"
+RCINCS    = --include-dir "C:/wxDevCpp/include/common"
+BIN       = libcsockets.a
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = ar
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) rcu "$(BIN)" $(LINKOBJ)
+
+cprt.o: $(GLOBALDEPS) cprt.c
+	$(CC) -c cprt.c -o cprt.o $(CFLAGS)
+
+swrite.o: $(GLOBALDEPS) swrite.c
+	$(CC) -c swrite.c -o swrite.o $(CFLAGS)
+
+error.o: $(GLOBALDEPS) error.c
+	$(CC) -c error.c -o error.o $(CFLAGS)
+
+fopenv.o: $(GLOBALDEPS) fopenv.c
+	$(CC) -c fopenv.c -o fopenv.o $(CFLAGS)
+
+outofmem.o: $(GLOBALDEPS) outofmem.c
+	$(CC) -c outofmem.c -o outofmem.o $(CFLAGS)
+
+rdcolor.o: $(GLOBALDEPS) rdcolor.c
+	$(CC) -c rdcolor.c -o rdcolor.o $(CFLAGS)
+
+saccept.o: $(GLOBALDEPS) saccept.c
+	$(CC) -c saccept.c -o saccept.o $(CFLAGS)
+
+sclose.o: $(GLOBALDEPS) sclose.c
+	$(CC) -c sclose.c -o sclose.o $(CFLAGS)
+
+sgets.o: $(GLOBALDEPS) sgets.c
+	$(CC) -c sgets.c -o sgets.o $(CFLAGS)
+
+sinit.o: $(GLOBALDEPS) sinit.c
+	$(CC) -c sinit.c -o sinit.o $(CFLAGS)
+
+smaskwait.o: $(GLOBALDEPS) smaskwait.c
+	$(CC) -c smaskwait.c -o smaskwait.o $(CFLAGS)
+
+smkskt.o: $(GLOBALDEPS) smkskt.c
+	$(CC) -c smkskt.c -o smkskt.o $(CFLAGS)
+
+sopen.o: $(GLOBALDEPS) sopen.c
+	$(CC) -c sopen.c -o sopen.o $(CFLAGS)
+
+sopenv.o: $(GLOBALDEPS) sopenv.c
+	$(CC) -c sopenv.c -o sopenv.o $(CFLAGS)
+
+speek.o: $(GLOBALDEPS) speek.c
+	$(CC) -c speek.c -o speek.o $(CFLAGS)
+
+speeraddr.o: $(GLOBALDEPS) speeraddr.c
+	$(CC) -c speeraddr.c -o speeraddr.o $(CFLAGS)
+
+speername.o: $(GLOBALDEPS) speername.c
+	$(CC) -c speername.c -o speername.o $(CFLAGS)
+
+sprintf.o: $(GLOBALDEPS) sprintf.c
+	$(CC) -c sprintf.c -o sprintf.o $(CFLAGS)
+
+sprt.o: $(GLOBALDEPS) sprt.c
+	$(CC) -c sprt.c -o sprt.o $(CFLAGS)
+
+sprtskt.o: $(GLOBALDEPS) sprtskt.c
+	$(CC) -c sprtskt.c -o sprtskt.o $(CFLAGS)
+
+sputs.o: $(GLOBALDEPS) sputs.c
+	$(CC) -c sputs.c -o sputs.o $(CFLAGS)
+
+sread.o: $(GLOBALDEPS) sread.c
+	$(CC) -c sread.c -o sread.o $(CFLAGS)
+
+sreadbytes.o: $(GLOBALDEPS) sreadbytes.c
+	$(CC) -c sreadbytes.c -o sreadbytes.o $(CFLAGS)
+
+srmsrvr.o: $(GLOBALDEPS) srmsrvr.c
+	$(CC) -c srmsrvr.c -o srmsrvr.o $(CFLAGS)
+
+srmtrblk.o: $(GLOBALDEPS) srmtrblk.c
+	$(CC) -c srmtrblk.c -o srmtrblk.o $(CFLAGS)
+
+sscanf.o: $(GLOBALDEPS) sscanf.c
+	$(CC) -c sscanf.c -o sscanf.o $(CFLAGS)
+
+stest.o: $(GLOBALDEPS) stest.c
+	$(CC) -c stest.c -o stest.o $(CFLAGS)
+
+stimeoutwait.o: $(GLOBALDEPS) stimeoutwait.c
+	$(CC) -c stimeoutwait.c -o stimeoutwait.o $(CFLAGS)
+
+stpblk.o: $(GLOBALDEPS) stpblk.c
+	$(CC) -c stpblk.c -o stpblk.o $(CFLAGS)
+
+stpnxt.o: $(GLOBALDEPS) stpnxt.c
+	$(CC) -c stpnxt.c -o stpnxt.o $(CFLAGS)
+
+strnxtfmt.o: $(GLOBALDEPS) strnxtfmt.c
+	$(CC) -c strnxtfmt.c -o strnxtfmt.o $(CFLAGS)
+
+svprintf.o: $(GLOBALDEPS) svprintf.c
+	$(CC) -c svprintf.c -o svprintf.o $(CFLAGS)
+
+swait.o: $(GLOBALDEPS) swait.c
+	$(CC) -c swait.c -o swait.o $(CFLAGS)

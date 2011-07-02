@@ -1,0 +1,13 @@
+\select@language {american}
+\contentsline {section}{\numberline {1}What it is}{1}
+\contentsline {section}{\numberline {2}Installation and how to use it.}{1}
+\contentsline {subsection}{\numberline {2.1}Installation}{1}
+\contentsline {subsection}{\numberline {2.2}How to use it}{2}
+\contentsline {subsection}{\numberline {2.3}Some technical information:}{2}
+\contentsline {subsubsection}{\numberline {2.3.1}Implemented functions}{2}
+\contentsline {subsubsection}{\numberline {2.3.2}Differences between the Linux-conio and DOS based conio.h's}{2}
+\contentsline {paragraph}{A) }{2}
+\contentsline {paragraph}{B)}{2}
+\contentsline {paragraph}{C)}{3}
+\contentsline {paragraph}{D) }{3}
+\contentsline {section}{\numberline {3}Copyright, author, bug reports etc...}{3}

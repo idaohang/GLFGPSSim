@@ -1,0 +1,370 @@
+pre {
+font-family: Courier;
+font-size: 10px;
+}
+
+.script {
+font-family: Courier;
+font-size: 16px;
+}
+
+body {
+font-family: Helvetica, Verdana, sans-serif;
+color: #000000;
+background-color: #FFFFFF;
+}
+
+li {
+margin-top: 10px;
+}
+
+.home {
+	position: absolute;
+	left: 10%;
+}
+
+.topad {
+	position: absolute;
+	text-align: right;
+	width: 30%;
+	left: 50%;
+	font-size: 16px;
+}
+
+.nav {
+	position: absolute;
+	top: 70px;
+	left: 9%;
+	width: 15%;
+}
+
+.toplayout {
+	top: 0px;
+	left: 0px;
+}
+
+.layout {
+}
+
+.contentbase {
+	position: absolute;
+	top: 70px;
+	left: 25%;
+	width: 55%;
+}
+
+.buttonsbox {
+	background-color: #aaaaaa;
+	padding: 8px;
+	font-size: 10px;
+	text-align: right;
+	margin: 0;
+}
+
+.topgap {
+	height: 2px;
+	font-size: 0px;
+}
+
+.gap {
+	height: 4px;
+	font-size: 0px;
+}
+
+.crumbbox {
+	background-color: #817a89;	
+	color: #ffffff;
+	padding: 8px;
+	font-size: 10px;
+	text-align: left;
+	margin: 0;
+}
+
+.crumbs {
+	background-color: #817a89;	
+}
+
+.linkto {
+	background-color: #aaaaaa;
+	padding-right: 8px;
+}
+
+.tellafriend {
+	background-color: #aaaaaa;
+	padding-right: 8px;
+}
+
+.printing {
+	background-color: #aaaaaa;
+}
+
+.titlebox {
+	background-color: #000000;
+	color: #ffffff;
+	width: 100%;
+	margin: 0;
+}
+
+.title {
+	padding-left: 10px;
+}
+
+.content {
+	background-color: #ffffff;
+	width: 100%;
+	margin: 0;
+}
+
+.adsense {
+	position: absolute;
+	top: 70px;
+	left: 82%;
+	width: 18%;
+}
+
+.note {
+	float: right;
+	border:2px solid black;
+	margin-top:10px; 
+	margin-left:10px;
+	padding:5px;
+	width:180px;
+}
+
+.inote {
+	clear: right;
+	border:2px solid black;
+	margin-top:20px; 
+	margin-left:10px;
+	margin-bottom:18px;
+	margin-right:10px;
+	padding:5px;
+}
+
+
+.menu {
+font-family: Helvetica, Verdana, sans-serif;
+background-color: #004466; 
+color: #FFFFFF;
+font-size: 10px;
+line-height: 12px;
+margin-top: 2px;
+margin-right: 8px;
+margin-bottom: 2px;
+margin-left: 2px;
+padding: 4px;
+}
+
+.external {
+font-size: 10px;
+line-height: 12px;
+}
+
+A:link { text-decoration:underline; }
+A:visited { text-decoration:underline; }
+A:hover { text-decoration:underline; }
+
+a.lmenu:link {
+font-size: 11px;
+color: #FFFFFF;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lmenu:visited {
+font-size: 11px;
+color: #FFFFFF;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lmenu:hover {
+font-size: 11px;
+color: #FFFFFF;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: underline;
+font-weight: normal;
+}
+
+a.lmenu:active {
+font-size: 11px;
+color: #FFFFFF;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+.cmenu {
+font-family: Helvetica, Verdana, sans-serif;
+background-color: #BBDDFF;
+color: #000000;
+font-size: 10px;
+line-height: 12px;
+margin-top: 2px;
+margin-right: 8px;
+margin-bottom: 2px;
+margin-left: 2px;
+padding: 4px;
+}
+
+.amenu {
+font-family: Helvetica, Verdana, sans-serif;
+color: #000000;
+font-size: 10px;
+line-height: 12px;
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 2px;
+}
+
+a.lcmenu:link {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lcmenu:visited {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lcmenu:hover {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: underline;
+font-weight: normal;
+}
+
+a.lcmenu:active {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.buttonlink:link {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lamenu:link {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lamenu:visited {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.lamenu:hover {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: underline;
+font-weight: normal;
+}
+
+a.lamenu:active {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.buttonlink:visited {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+a.buttonlink:hover {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: underline;
+font-weight: normal;
+}
+
+a.buttonlink:active {
+font-size: 11px;
+color: #000000;
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+font-weight: normal;
+}
+
+.menu2 {
+font-family: Helvetica, Verdana, sans-serif;
+color: #000000;
+font-size: 10px;
+line-height: 12px;
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.heading {
+font-family: Helvetica, Verdana, sans-serif;
+color: #FFFFFF;
+font-size: 30px;
+line-height: 46px;
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.story-title {
+font-family: Helvetica, Verdana, sans-serif;
+color: #000000;
+font-size: 24px;
+line-height: 36px;
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+.comment-title {
+font-family: Helvetica, Verdana, sans-serif;
+color: #000000;
+font-size: 14px;
+line-height: 14px;
+margin-top: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+}
+
+buttontable {
+background-color: #AAAAAA;
+}
+
+buttoncell {
+background-color: #DDDDDD;
+}
+

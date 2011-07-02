@@ -1,0 +1,143 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://neurovision.berkeley.edu/software/A_Cgraph.html" --><title>Cgraph: PostScript plotting library in C</title></head><body bgcolor="#fff0e0"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://neurovision.berkeley.edu/software/A_Cgraph.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://neurovision.berkeley.edu/software/A_Cgraph.html</a>. It is a snapshot of the page as it appeared on Dec 9, 2008 21:03:50 GMT. The <a href="http://neurovision.berkeley.edu/software/A_Cgraph.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.47.132/search?q=cache:qc5TRe_PtpYJ:neurovision.berkeley.edu/software/A_Cgraph.html+postscript+c+code&amp;hl=en&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">postscript</span>&nbsp;<span style="background: rgb(160, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">c</span>&nbsp;<span style="background: rgb(153, 255, 153) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">code</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+
+
+<h3><b>Cgraph:</b> <b style="color: black; background-color: rgb(255, 255, 102);">PostScript</b> plotting library in <b style="color: black; background-color: rgb(160, 255, 255);">C</b></h3>
+
+<blockquote><i>Version 2.04, 1998-Aug-29 (see blow for Revision History)</i></blockquote>
+
+This is a <b style="color: black; background-color: rgb(160, 255, 255);">C</b> source <b style="color: black; background-color: rgb(153, 255, 153);">code</b> library that contains a set of <b style="color: black; background-color: rgb(160, 255, 255);">C</b> functions that
+generate <b style="color: black; background-color: rgb(255, 255, 102);">PostScript</b> for publication quality scientific plots.  If you have
+a <b style="color: black; background-color: rgb(255, 255, 102);">PostScript</b> previewer, it is possible to launch the viewer automatically
+on generated PS/EPS files.  The Cgraph Library source <b style="color: black; background-color: rgb(153, 255, 153);">code</b>, examples, and documentation
+are in the public domain.  Utilities included in the utils* directories are
+not ours, and under the distribution terms specified therein.
+<p>
+
+Why do we want something like this, when Mac and Windows apps can
+finally produce nice plots?  Those GUI apps are OK for
+small number of plots,
+but if you ever need to plot tens or hundreds of similarly formatted
+graphs fast, GUIs become very tedius.  Also, if you need to generate
+plots automatically, e.g., those stock price charts updated every tens
+of minutes available from some Web sites, a program that incorporates this library may be
+used to generate EPS files from current data, which can be piped into Ghostscript
+(or DPS) to update GIF images without manual intervention.
+</p><p>
+
+Requires ANSI <b style="color: black; background-color: rgb(160, 255, 255);">C</b> compiler.
+Full source <b style="color: black; background-color: rgb(153, 255, 153);">code</b>, documentaiton, and a few usage examples are included.
+Tested using NEXTSTEP and its Preview.app.  It should easily be portable to
+other platforms and for use with Ghostscript (modify bgshow.<b style="color: black; background-color: rgb(160, 255, 255);">c</b>)
+</p><p>
+
+</p><hr>
+<b>Click one of the links to start a download:</b><br>
+
+Via
+<a href="http://neurovision.berkeley.edu/software/Cgraph2.04.tar.gz">
+ HTTP download</a>
+(~190 kbytes, Cgraph.tar.gz)<br>
+
+<br>
+
+<p>
+
+</p><hr>
+<p>
+
+<b>Examples:</b> (<b style="color: black; background-color: rgb(160, 255, 255);">C</b> <b style="color: black; background-color: rgb(153, 255, 153);">code</b> included in the package)<br>
+</p><p>
+The log-log plot below is generated for a B/W publication, using
+<a href="http://neurovision.berkeley.edu/software/TFopt-lrLog.c">this <b style="color: black; background-color: rgb(160, 255, 255);">C</b> program</a>,
+and an <a href="http://neurovision.berkeley.edu/software/TFampspect.dat">ascii data file</a>
+(of X, Y pairs).  This is a GIF image rendered from the EPS file
+the program generated (because most Web browsers can't view EPS/PS natively).
+The plot appeared in my paper: <a href="http://neurovision.berkeley.edu/publications/1996/SBinoc96.html">
+Encoding of binocular disparity by simple cells ...
+(<i>J Neurophysiol.</i> 1996)</a> as Fig. 15B.<br>
+
+<img src="search_files/log-log-plot.gif" width="270" height="270">
+<br>
+</p><p>
+By changing just two words in the EPS file for the above, the otherwise identical file now renders
+in <b>color</b> as shown below.  PS/EPS files generated by Cgraph may (implicitly) contain specifications
+for <b>both</b> B/W and color, one of which may be activated by changing a couple of <b>def</b>'s
+at the beginning of the file using a standard text editor.  This saves time by eliminating the need to prepare
+two separate figures, one for B/W publications and the other for slide/on-line presentations.
+</p><p>
+Note that PostScript's automatic conversion from color to B/W is suitable for photographic
+images, but generally not appropriate for plots and graphs.  For example, sending the image below to a
+B/W device will produce unattractive results, certain to be rejected by most journals.
+<br>
+
+<img src="search_files/log-log-color.gif" width="270" height="270">
+<br>
+</p><p>
+</p><hr>
+Available symbols for marking data points<br>
+<img src="search_files/cgraph-markers.gif" width="460" height="100">
+
+<p>
+</p><hr>
+Another minimal (but otherwise difficult to generate) example produced by
+<a href="http://neurovision.berkeley.edu/software/CGminimal.c">this <b style="color: black; background-color: rgb(160, 255, 255);">C</b> program</a>.<br>
+<img src="search_files/CGminimal.gif" width="216" height="216">
+
+<p>
+</p><hr>
+<h3>Revision History</h3>
+<b>2.04</b>:  1998-08-29
+<p>
+  Minor bug fix release.  No major changes in features, but
+  all compiler warnings in my environment have been eliminated.
+
+</p><p>
+
+<b>2.02</b>:  1997-03-04
+</p><p>
+  Three new functions below, mostly for convenience of batch type processing,
+  have been added.  For example, it is now a snap to create and print
+  PS files in a loop without having a previewer open each file.
+<br>
+    void cg_launch_preview(int flag);<br>
+    char *cg_get_output_filename(void);<br>
+    void cg_set_output_filename(char *file);<br>
+
+
+</p><p>
+</p><hr>
+
+<h3>See Also</h3>
+<a href="http://www.fastio.com/"><b>ClibPDF</b> (<b style="color: black; background-color: rgb(160, 255, 255);">C</b> library for PDF)</a>
+is a library of ANSI <b style="color: black; background-color: rgb(160, 255, 255);">C</b> functions that works like our Cgraph, but for
+PDF (Portable Document Format) files.  PDF is better known as the
+format used by <a href="http://www.adobe.com/prodindex/acrobat/">Adobe Acrobat</a>
+suite of products.  Using ClibPDF, a simple <b style="color: black; background-color: rgb(160, 255, 255);">C</b> program can generate PDF files
+directly without the aid of any other tools.
+ClibPDF is a commercial product, but is free to non-profit users.
+
+<p>
+<a href="http://www.soest.hawaii.edu/gmt/"><b>The GMT System</b> (The Generic Mapping Tools)</a>
+which generates superb scientific plots of all kinds by combining
+Unix commands.  It is a collection of ~50 free, public-domain
+commands that perform well-defined drawing tasks.  All source <b style="color: black; background-color: rgb(153, 255, 153);">code</b>
+and more are included.  It is particularly strong in geographical
+map plotting (with all kinds of map projections), but it also works
+very well for other 2D, and 3D plots (XY, contour, surface, etc.).
+Another plus of the GMT System is that it generates <b style="color: black; background-color: rgb(255, 255, 102);">PostScript</b> output only and does
+not attempt to drive other inferior graphic devices unlike GnuPlot.
+This package also includes a <b style="color: black; background-color: rgb(160, 255, 255);">C</b> library for generating <b style="color: black; background-color: rgb(255, 255, 102);">PostScript</b>.
+The functions included go beyond the scope of our Cgraph library.
+However, that library is not intended to be used stand-alone outside
+the GMT System.  So, it will need some work.
+</p><p>
+
+
+</p></div></body></html>

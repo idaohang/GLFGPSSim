@@ -1,0 +1,7 @@
+Version: I  Changes:
+--------------------------------------------------------------------------------
+1.00     I  Initial version - first release.
+1.01     I  Fixed incompatibility with newer versions of ncurses. (wattr_get)
+1.02     I  Fixed inpw and inpd bug, make conio_src public
+
+To be continued....

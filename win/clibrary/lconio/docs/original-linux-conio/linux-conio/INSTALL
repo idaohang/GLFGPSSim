@@ -1,0 +1,9 @@
+ATTENTION:
+If you have problems compiling this version. Try Linux-conio version 1.00.
+If the problem persists check your ncurses installation. If it still persists
+write a bug report. If it then still persists - write a bug fix. If you cannot
+write a bug fix take a gun and shoot yourself.... ;)
+
+However it is not always neccessary to compile. If you have problems just use the precompiled version.
+
+Please read the file README for information on how to install and use the linux-conio. 

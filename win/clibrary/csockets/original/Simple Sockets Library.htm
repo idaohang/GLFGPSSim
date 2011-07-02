@@ -1,0 +1,205 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+ <title> Simple Sockets Library</title></head><body background="Simple%20Sockets%20Library_files/drcbgd.gif" bgcolor="#000000" text="#40ff40" vlink="#888888" link="#00ffff"><center>
+
+ <h1>
+  <img src="Simple%20Sockets%20Library_files/grndraghd.gif">
+  <font color="white">The Simple Sockets Library</font>
+  <img src="Simple%20Sockets%20Library_files/grndraghd.gif">
+ </h1>
+ Authors: Charles E. Campbell, Jr.<br>
+        Terry McRoberts
+</center>
+<p><font size="+1">
+    The Simple Sockets Library makes sockets easy to use!  And, it comes
+    as public domain source code, free via the web:
+</font></p><ul type="disc">
+<font size="+1">        <li> Resembles C's file i/o:<br>
+            <font color="cyan" size="2"><i>Sclose()  Sgets()  Sopen()  Sprintf() Sputs()  Sread()  Sscanf()  Swrite() Svprintf()</i></font>
+
+        </li><li> Uses currently available ports only, so if a server can be brought up,
+          it will be
+
+        </li><li> Named sockets -- servers have names, not fixed port addresses!<br>
+          (no more REUSEADDR problems, linger setting, zombie sockets!)
+
+        </li><li> Streaming/blocking sockets used
+
+        </li><li> Polling supported (ie. avoids blocking):<br>
+            <font color="cyan" size="2"><i>Stest()  Smasktest()  Speek()</i></font>
+
+        </li><li> Numerous functions to handle multiple concurrent clients:<br>
+            <font color="cyan" size="2"><i>Smaskfdset()   Smaskpush()    Smasktime()    Smaskunset()   Smaskwait()<br>
+            Smaskget()     Smaskset()     Smaskunfdset() Smaskuse()     Sprtmask()<br>
+            Smaskpop()     Smasktest()</i></font>
+
+        </li><li> Timeout control:<br>
+            <font color="cyan" size="2"><i>Stimeoutwait()  Smasktime()</i></font>
+
+		</li><li> The PortMaster (<font color="cyan" size="2"><i>Spm</i></font>): Maintains a distributed port/server-name
+		database Each machine runs a PortMaster which maps servers by name to
+		their ports (transparent to programmers and users!)
+
+        </li><li> Firewall Support<br>
+		  The PortMaster can (optionally) only "put through" connections from
+		  approved machine sites
+
+        </li><li> Supports "path"ing for sockets: one can use an environment variable
+          to track down a server, by name, on any machine in a group:<br>
+            <font color="cyan" size="2"><i>Sopenv()</i></font>
+
+        </li><li> Doesn't need root privileges (that's Unix lingo...)
+
+        </li><li> Now supports fixed ports (servers and/or clients) to facilitate
+          interfacing to non-SSL servers/clients
+</li></font></ul>
+<p>
+<font size="+1">The Simple Sockets Library is available by clicking on <a href="http://mysite.verizon.net/astronaut/ssl/ssl-7c.tar.bz2">ssl-7c.tar.bz2</a>.
+Its also been registered at
+<a href="http://freshmeat.net/projects/simplesocketslibrary/">Freshmeat.net</a>.
+</font></p><p>
+<font size="+1">The Simple Sockets Library's main purpose is to provide an Application Programming
+Interface that strongly resembles the standard C library's file handling
+interface.  Thus programmers find that the Simple Sockets Library's learning
+curve is particularly short.  As a secondary purpose the Simple Sockets Library
+helps programmers avoid some common programming problems with sockets
+(avoided: large buffers that don't transfer in their entirety without special effort,
+the Nagle algorithm's practical effect of often limiting one to five transfers per
+second, servers whose ports refuse to re-open until two minutes have passed, etc).
+Strings are null-byte terminated just like regular C/C++ strings, facilitating
+their ease of use in C/C++ programming.
+</font></p><p>
+<font size="+1">The Simple Sockets Library preferentially uses names for its servers rather
+than requiring hard-coded port numbers.  Imagine if, instead of files having
+names, everyone went about saying "use sector 4 and track 14" or somesuch
+thing.  This situation reflects what we now have with sockets -- and when two
+programs use the same port number for their servers, they can't co-exist
+simultaneously on a system.  However, especially for those whose programs must
+interface with other programs using hard-coded port numbers, the Simple Socket
+Library also supports hard-code port numbers.
+</font></p><p>
+<font size="+1">The Simple Sockets Library opens streaming sockets.  Thus the Simple Sockets
+Library's sockets provide guaranteed delivery of information in the correct
+order (unlike datagrams, for example).
+</font></p><p>
+<font size="+1">The PortMaster (Spm), source code for which is part of the library, provides
+a "phonebook" to map server names to dynamically allocated port numbers.
+Port numbers thus won't clash; the operating system determines which ones are
+currently available and the PortMasters effectively publish the result.
+The programmer only need write </font></p><pre><font size="+1">Sopen("srvrname","s")</font></pre><font size="+1"> or
+</font><pre><font size="+1">Sopen("srvrname","c")</font></pre><font size="+1"> as needed because the Simple Sockets Library
+transparently handles all transactions with the PortMasters.
+</font><p>
+<font size="+1">The PortMasters provide security, too, in the form of lists of IP addresses
+that they will permit contact from.
+</font></p><p>
+<font size="+1">If you'd like to find out more about sockets and tcp/ip, check out
+<a href="http://www.softlab.ntua.gr/facilities/documentation/unix/unix-socket-faq/unix-socket-faq.html"> Vic Metcalfe's Sockets FAQ</a>
+(see the SSL mentioned in the FAQ's answer to Category 2, Q12).
+</font></p><p>
+</p><hr>
+<p>
+</p><center>
+<h2><font size="+1"><font color="cyan"> Examples </font></font></h2>
+</center>
+<font size="+1">    A) A Server/Accept
+</font><pre><font size="+1">        <font color="cyan">#include </font><font color="yellow">"sockets.h"</font>
+        <font color="magenta">Socket</font> *srvr;
+        <font color="magenta">Socket</font> *skt;
+        srvr= Sopen(<font color="yellow">"srvrname"</font>,<font color="yellow">"s"</font>);     <font color="white">/* open a server called </font><font color="yellow">"srvrname"</font><font color="white">      */</font>
+        skt = Saccept(srvr);             <font color="white">/* accept a client on the given server  */</font>
+        Sputs(<font color="yellow">"hello client"</font>,skt);       <font color="white">/* send a string to the client          */</font>
+        Sclose(skt);                     <font color="white">/* close the accept Socket              */</font>
+        Sclose(srvr);                    <font color="white">/* close the server                     */</font>
+</font></pre>
+<p>
+<font size="+1">    B) A Client
+</font></p><pre><font size="+1">        <font color="cyan">#include </font><font color="yellow">"sockets.h"</font>
+        <u><font color="magenta">char</font></u>    buf[BUFSIZE];
+        <font color="magenta">Socket</font> *client;
+        client= Sopen(<font color="yellow">"srvrname"</font>,<font color="yellow">"c"</font>);   <font color="white">/* open client to the </font><font color="yellow">"srvrname"</font><font color="white"> server */</font>
+        Sgets(buf,BUFSIZE,client);       <font color="white">/* get a string from the server         */</font>
+        printf(<font color="yellow">"server said &lt;%s&gt;</font><font color="green">\n</font><font color="yellow">"</font>,buf);<font color="white">/* print out what the client got        */</font>
+        Sclose(client);                  <font color="white">/* close the client Socket              */</font>
+</font></pre>
+<p>
+</p><hr>
+<p>
+</p><center><table>
+  <tbody><tr><td> <font color="yellow"><em>Version</em></font><em></em> </td><td> <font color="yellow"><em>Updates</em></font><em></em>                    </td></tr>
+  <tr><td> 6 (Mar 24, 2005)                           </td><td> Tingas - for Gnu CC, socklen_t now used instead of int        </td></tr>
+  <tr><td>                                            </td><td> Sopen(srvrname,"b") - a blocking wait for client opening      </td></tr>
+  <tr><td> 5 (May 24, 2004)                           </td><td> Now supports cygwin                                           </td></tr>
+  <tr><td> 4 (Apr 22, 2004)                           </td><td> Wood - sprt prototyped properly                               </td></tr>
+  <tr><td>                                            </td><td> Wood - &lt;strings.h&amp;rt; changed to &lt;string.h&amp;rt;          </td></tr>
+  <tr><td> 3 (Apr 02, 2004)                           </td><td> some cosmetic changes, more pointers initialized to Null, etc </td></tr>
+  <tr><td>                                            </td><td> Bourne - Mac OS-X port                                        </td></tr>
+</tbody></table></center>
+<p>
+</p><hr>
+<p><font size="+1"><a name="ssllinks"></a>
+</font></p><h1><center><font size="+1"><font color="cyan">Links</font></font></center></h1>
+<p>
+</p><center><table>
+  <tbody><tr><td> <font color="yellow"><em>Description</em></font><em></em>             </td><td> <font color="yellow"><em>Link</em></font><em></em>                                                           </td><td>                                                     </td></tr>
+  <tr><td> <b>Simple Sockets Library Source</b>                       </td><td> <a href="http://mysite.verizon.net/astronaut/ssl/ssl-7c.tar.bz2">ssl-7c.tar.bz2</a>                                                           </td><td> <table bgcolor="#bb7700" border="0" cellspacing="0"> <tbody><tr><td>   <font size="-1"><font color="black"><em>Updated</em> Aug 22, 2005</font></font></td></tr></tbody></table> </td></tr>
+  <tr><td> <b>PGP Signature for the Simple Sockets Library Source</b> </td><td> <a href="http://mysite.verizon.net/astronaut/ssl/ssl-7.md5">ssl-7.md5</a>                                                                   </td><td> <table bgcolor="#bb7700" border="0" cellspacing="0"> <tbody><tr><td>   <font size="-1"><font color="black"><em>Updated</em> Aug 22, 2005</font></font></td></tr></tbody></table> </td></tr>
+  <tr><td> Domains and Protocols                                      </td><td> <a href="http://www.ibr.cs.tu-bs.de/%7Eharbaum/docs/bsd-tut/sockets_5.html">Domains and Protocols</a> </td><td>                                                     </td></tr>
+  <tr><td> More Sockets Links                                         </td><td> <a href="http://www.lowtek.com/sockets/">Spencer's Socket Site</a>                                  </td><td>                                                     </td></tr>
+  <tr><td> Sockets FAQ                                                </td><td> <a href="http://www.faqs.org/faqs/unix-faq/socket/"> Vic Metcalfe's Sockets FAQ</a>                 </td><td>                                                     </td></tr>
+  <tr><td> Dealing with Floats, Structs, etc.                         </td><td> <a href="http://mysite.verizon.net/astronaut/ssl/rpc.html">RPC</a>                                                                          </td><td>                                                     </td></tr>
+</tbody></table></center>
+<p>
+<font size="+1">The pre-compiled version of the Simple Sockets Library was compiled
+with the Borland C/C++ compiler.
+<!-- <IMG src=../pix/newscroll.gif ></TD></TR> -->
+<!-- <table border="0" cellspacing="0" bgcolor="BB7700"><tr><td><font size="-1"><font color=black><em>Updated</em></font></tr></table></TD></TR> -->
+</font></p><p>
+</p><hr>
+<p>
+</p><center>
+<font size="+1"><a href="http://bible.gospelcom.net/bible?passage=JOHN+3&amp;language=english&amp;version=NIV">John 3:16</a>
+</font></center>
+<font size="+1">For God so loved the world that he gave His one and only Son,
+that whoever believes in Him shall not perish but have eternal life.
+</font><p>
+</p><center>
+<h2><font size="+1"><font color="cyan"> Port Requests </font></font></h2>
+</center>
+<p>
+<font size="+1">Have you ported the Simple Sockets Library to a new operating system?
+Please send a copy to <em>NdrOchip@ScampbellPfamily.AbizM</em> so I
+can make it available to all.  Take out the NOSPAM embedded the email
+address and it'll work.  Hate e-spam!
+<!--<P>-->
+<!--<HR>-->
+<!--<P><CENTER><FONT size=+2>Hits on DrChip's Simple Sockets Library page.</FONT><P>-->
+<!--<img src=../usage/u_ssl.gif>-->
+<!--</CENTER>-->
+</font></p><p>
+</p><hr>
+<center><table width="100%">
+ <tbody><tr><td align="center"> <a href="http://mysite.verizon.net/astronaut/index.html"><font size="-1">Home</font></a><font size="-1"> </font></td><td align="center"> <font size="-1">
+ You are visitor
+<!-- <img src="http://cgibin.erols.com/cgi-bin/Count.cgi?df=astrosslindx&ft=3&tr=N&dd=D&md=6">-->
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+var sc_project=315209; 
+var sc_partition=1; 
+</script>
+
+<script type="text/javascript" language="javascript" src="Simple%20Sockets%20Library_files/counter.js"></script><span class="statcounter"><a class="statcounter" href="http://www.statcounter.com/" target="_blank"><img src="Simple%20Sockets%20Library_files/t.png" alt="StatCounter - Free Web Tracker and Counter" border="0"></a></span>
+<noscript><a href="http://www.statcounter.com/free_hit_counter.html"
+target="_blank"><img
+src="http://c2.statcounter.com/counter.php?sc_project=315209&amp;amp;java=0"
+alt="free page hit counter" border="0"></a> </noscript>
+<!-- End of StatCounter Code -->
+ </font></td><td></td></tr>
+</tbody></table></center>
+<p>
+</p><center><table width="100%">
+ <tbody><tr><td align="left">  <font size="-1"><em>Last Modified </em><!-- DATE -->Aug 18, 2008 12:35:45 PM</font> </td>
+     <td align="right"> <font size="-1"><em></em><!-- COPYRIGHT -->© 2008, Charles E Campbell, Jr.</font><br> </td>
+	 <td></td></tr>
+</tbody></table></center>
+</body></html>

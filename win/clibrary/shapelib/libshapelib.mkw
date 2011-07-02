@@ -1,0 +1,70 @@
+# Project: libshapelib
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 7.3 on 01/11/10 23:30
+
+WXLIBNAME = wxmsw28
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = shputils.o dbfcreate.o dbfdump.o dbfopen.o shpadd.o shpcreate.o shpdump.o shpopen.o shprewind.o shptest.o shptree.o shptreedump.o dbfadd.o
+LINKOBJ   = "shputils.o" "dbfcreate.o" "dbfdump.o" "dbfopen.o" "shpadd.o" "shpcreate.o" "shpdump.o" "shpopen.o" "shprewind.o" "shptest.o" "shptree.o" "shptreedump.o" "dbfadd.o"
+LIBS      = -L"C:/wxDevCpp/Lib" -lm  
+INCS      = -I"C:/wxDevCpp/Include"
+CXXINCS   = -I"C:/wxDevCpp/lib/gcc/mingw32/3.4.5/include" -I"C:/wxDevCpp/include/c++/3.4.5/backward" -I"C:/wxDevCpp/include/c++/3.4.5/mingw32" -I"C:/wxDevCpp/include/c++/3.4.5" -I"C:/wxDevCpp/include" -I"C:/wxDevCpp/" -I"C:/wxDevCpp/include/common/wx/msw" -I"C:/wxDevCpp/include/common/wx/generic" -I"C:/wxDevCpp/include/common/wx/html" -I"C:/wxDevCpp/include/common/wx/protocol" -I"C:/wxDevCpp/include/common/wx/xml" -I"C:/wxDevCpp/include/common/wx/xrc" -I"C:/wxDevCpp/include/common/wx" -I"C:/wxDevCpp/include/common"
+RCINCS    = --include-dir "C:/wxDevCpp/include/common"
+BIN       = libshapelib.a
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = ar
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(LINKOBJ) "$(BIN)"
+
+$(BIN): $(OBJ)
+	$(LINK) rcu "$(BIN)" $(LINKOBJ)
+
+shputils.o: $(GLOBALDEPS) shputils.c
+	$(CC) -c shputils.c -o shputils.o $(CFLAGS)
+
+dbfcreate.o: $(GLOBALDEPS) dbfcreate.c
+	$(CC) -c dbfcreate.c -o dbfcreate.o $(CFLAGS)
+
+dbfdump.o: $(GLOBALDEPS) dbfdump.c
+	$(CC) -c dbfdump.c -o dbfdump.o $(CFLAGS)
+
+dbfopen.o: $(GLOBALDEPS) dbfopen.c
+	$(CC) -c dbfopen.c -o dbfopen.o $(CFLAGS)
+
+shpadd.o: $(GLOBALDEPS) shpadd.c
+	$(CC) -c shpadd.c -o shpadd.o $(CFLAGS)
+
+shpcreate.o: $(GLOBALDEPS) shpcreate.c
+	$(CC) -c shpcreate.c -o shpcreate.o $(CFLAGS)
+
+shpdump.o: $(GLOBALDEPS) shpdump.c
+	$(CC) -c shpdump.c -o shpdump.o $(CFLAGS)
+
+shpopen.o: $(GLOBALDEPS) shpopen.c
+	$(CC) -c shpopen.c -o shpopen.o $(CFLAGS)
+
+shprewind.o: $(GLOBALDEPS) shprewind.c
+	$(CC) -c shprewind.c -o shprewind.o $(CFLAGS)
+
+shptest.o: $(GLOBALDEPS) shptest.c
+	$(CC) -c shptest.c -o shptest.o $(CFLAGS)
+
+shptree.o: $(GLOBALDEPS) shptree.c
+	$(CC) -c shptree.c -o shptree.o $(CFLAGS)
+
+shptreedump.o: $(GLOBALDEPS) shptreedump.c
+	$(CC) -c shptreedump.c -o shptreedump.o $(CFLAGS)
+
+dbfadd.o: $(GLOBALDEPS) dbfadd.c
+	$(CC) -c dbfadd.c -o dbfadd.o $(CFLAGS)

@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="keywords" content="tty manipulation..., tcp/ip,sockets,faq,internet,programming,unix" />
+	<meta name="description" content="[Archive] tty manipulation... Files and Directories" />
+	
+	<title>tty manipulation... [Archive]  - UNIX Socket FAQ</title>
+	<link rel="stylesheet" type="text/css" href="http://www.developerweb.net/forum/archive/archive.css" />
+</head>
+<body>
+<div class="pagebody">
+<div id="navbar"><a href="./">UNIX Socket FAQ</a> &gt; <a href="f-55.html">UNIX Platforms</a> &gt; <a href="f-63.html">Files and Directories</a> &gt; tty manipulation...</div>
+<hr />
+<div class="pda"><a href="?pda=1" rel="nofollow">PDA</a></div>
+<p class="largefont">View Full Version : <a href="http://www.developerweb.net/forum/showthread.php?t=3799">tty manipulation...</a></p>
+<hr />
+
+<div class="post"><div class="posttop"><div class="username">felix</div><div class="date">10-18-2004, 05:00 PM</div></div><div class="posttext">Hello,<br />
+<br />
+I'm looking at tty manipulation. I tryed to figure out a application like screen (screen -x) where we can see what some user is making in other tty, but i tryed to do it without logged user confirmation (like screen require). This can be useful for me admin my server, maybe for others too. :)<br />
+<br />
+I searched sources at internet, looked some man, but somethings isn't clean yet.. :(<br />
+<br />
+The code is like that<br />
+<br />
+#include &amp;lt;stdio.h&gt;<br />
+#include &amp;lt;errno.h&gt;<br />
+#include &amp;lt;fcntl.h&gt;<br />
+#include &amp;lt;unistd.h&gt;<br />
+#include &amp;lt;termios.h&gt;<br />
+#include &amp;lt;sys/ioctl.h&gt;<br />
+<br />
+#define DEVICE  &quot;/dev/pts/3&quot;<br />
+<br />
+struct  termios save_termios;<br />
+int     ttysavefd = -1;<br />
+enum    &#123; RESET, DIRTY &#125; ttystate = RESET;<br />
+<br />
+int tty_dirtyterm &#40;int fd&#41;;<br />
+int tty_reset &#40;int fd&#41;;<br />
+<br />
+int main&#40;void&#41;&#123;<br />
+<br />
+  char c;<br />
+  char moo&#91;2&#93;;<br />
+<br />
+  /* open device */<br />
+  int fd = open&#40;DEVICE,O_RDWR&#41;;<br />
+  if&#40;fd == -1&#41;<br />
+    &#123;<br />
+      perror&#40;&quot;open DEVICE&quot;&#41;;<br />
+      exit&#40;1&#41;;<br />
+    &#125;<br />
+<br />
+  /* Unbuffered output */<br />
+  setvbuf&#40;stdout, NULL, _IONBF, 0&#41;;<br />
+<br />
+  /* Read input and write it to stdout */<br />
+  while&#40;1&#41;&#123;<br />
+<br />
+        if&#40;read&#40;fd,&amp;amp;c,1&#41; &gt; 0&#41;&#123;<br />
+<br />
+                c &amp;amp;= 255;<br />
+                sprintf&#40;moo, &quot;%c&quot;, c&#41;;<br />
+<br />
+                if &#40; c == 127&#41;&#123;<br />
+<br />
+                        printf&#40;&quot;\b \b&quot;&#41;;<br />
+                        fflush&#40;stdout&#41;;<br />
+                &#125;<br />
+<br />
+                if &#40; c == 10 || c == 13&#41;&#123;<br />
+<br />
+                        printf&#40;&quot;\n&quot;&#41;;<br />
+                        fflush&#40;stdout&#41;;<br />
+<br />
+                &#125;<br />
+<br />
+                putchar&#40;c&#41;;<br />
+                fflush&#40;stdout&#41;;<br />
+<br />
+                //write&#40;fd, &amp;amp;c, sizeof&#40;c&#41;&#41;;<br />
+                tty_dirtyterm&#40;STDIN_FILENO&#41;;<br />
+                ioctl&#40;fd, TIOCSTI, moo&#41;;<br />
+<br />
+        &#125;<br />
+<br />
+        else<br />
+                usleep&#40;1&#41;;<br />
+<br />
+  &#125;<br />
+<br />
+  tty_reset&#40;STDIN_FILENO&#41;;<br />
+  close&#40;fd&#41;;<br />
+  return 0;<br />
+&#125;<br />
+<br />
+int tty_dirtyterm &#40;int fd&#41; &#123;<br />
+    struct termios      buf;<br />
+<br />
+    if &#40;tcgetattr&#40;fd, &amp;amp;save_termios&#41; &amp;lt; 0&#41;<br />
+        return&#40;-1&#41;;<br />
+<br />
+    buf = save_termios;<br />
+<br />
+    buf.c_lflag &amp;amp;= ~&#40;ECHO | ICANON&#41;;<br />
+<br />
+    buf.c_cc&#91;VMIN&#93; = 1;<br />
+    buf.c_cc&#91;VTIME&#93; = 0;<br />
+<br />
+    if &#40;tcsetattr&#40;fd, TCSAFLUSH, &amp;amp;buf&#41; &amp;lt;0&#41;<br />
+        return&#40;-1&#41;;<br />
+<br />
+    ttystate = DIRTY;<br />
+    ttysavefd = fd;<br />
+<br />
+    return&#40;0&#41;;<br />
+&#125;<br />
+<br />
+int tty_reset &#40;int fd&#41; &#123;<br />
+    if &#40;ttystate == RESET&#41;<br />
+        return&#40;0&#41;;<br />
+<br />
+    if &#40;tcsetattr&#40;fd, TCSAFLUSH, &amp;amp;save_termios&#41; &amp;lt; 0&#41;<br />
+        return&#40;-1&#41;;<br />
+<br />
+    ttystate = RESET;<br />
+    return&#40;0&#41;;<br />
+&#125;<br />
+<br />
+Let's to the problems.. hehehe <br />
+<br />
+1 - If I use ioctl() to send message to the original tty, it is send, but not printed in my tty as it should since i call printf() or putc() before it. If I comment ioctl() and uncomment write() then i see all that is typed at the user tty, but in the user tty only appear what he types in the some-line (overwriting what was wroten) and never executing this commands (only showing it). What i'm doing wrong ? How can i fix it ?<br />
+<br />
+2 - How tty know that it should execute a command ? For example, if i send via write a &quot;ls&quot; it will not be executed, it will be only showed. But if i send via ioctl() it will be executed. I thinked that a \r\n that indicate that it should be executed (like a enter) but i'm wrong. How it works ?<br />
+<br />
+3 - I looked at man ioctl and i couldn't find what does TIOCSTI! Someone know what it does ?<br />
+<br />
+4 - Can i execute commands in the tty via write instead ioctl() ? How ?<br />
+<br />
+Thks<br />
+<br />
+Regards,</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">RobSeace</div><div class="date">10-18-2004, 07:56 PM</div></div><div class="posttext">I believe the STI in TIOCSTI stands for &quot;Simulate Terminal Input&quot;...<br />
+(And, the TIOC is &quot;Terminal IOCtl&quot;, of course...)  Documentation<br />
+on any of the ioctl()'s is very sparse, and you're pretty much<br />
+reduced to hunting for existing code that uses it...  (But, sometimes<br />
+&quot;man ioctl_list&quot; gives SOME info, at least...)<br />
+<br />
+Here is a quick and dirty example app that uses TIOCSTI:<br />
+<br />
+<br />
+#include &amp;lt;stdio.h&gt;<br />
+#include &amp;lt;stdlib.h&gt;<br />
+#include &amp;lt;fcntl.h&gt;<br />
+#include &amp;lt;sys/ioctl.h&gt;<br />
+<br />
+int main &#40;int argc, char *argv&#91;&#93;&#41;<br />
+&#123;<br />
+    char *cmd, *nl = &quot;\n&quot;;<br />
+    int i, fd = 0;<br />
+<br />
+    if &#40;argc &gt; 1&#41; &#123;<br />
+        cmd = argv&#91;1&#93;;<br />
+    &#125; else &#123;<br />
+        cmd = &quot;ls&quot;;<br />
+    &#125;<br />
+<br />
+    for &#40;i = 0; cmd&#91;i&#93;; i++&#41;<br />
+        ioctl &#40;fd, TIOCSTI, cmd+i&#41;;<br />
+<br />
+    ioctl &#40;fd, TIOCSTI, nl&#41;;<br />
+<br />
+    exit &#40;0&#41;;<br />
+&#125;<br />
+<br />
+<br />
+It will execute the given command, by outputing a newline after it...<br />
+It just uses FD 0 (stdin) to execute in your current tty, but you<br />
+should be able to open() any other tty and have it work on that<br />
+one,  instead...<br />
+<br />
+I suspect your problems stem from your messing with the tty<br />
+state via tcsetattr()...  I'm unclear as to why you do that...</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">Anonymous</div><div class="date">10-18-2004, 09:08 PM</div></div><div class="posttext">Hi RobSeace,<br />
+<br />
+Thks for you help me once again... ;)<br />
+<br />
+I believe the STI in TIOCSTI stands for &quot;Simulate Terminal Input&quot;... (And, the TIOC is &quot;Terminal IOCtl&quot;, of course...)  Documentation on any of the ioctl()'s is very sparse, and you're pretty much reduced to hunting for existing code that uses it...  (But, sometimes<br />
+&quot;man ioctl_list&quot; gives SOME info, at least...)<br />
+<br />
+Humm.. at last now i know what means STI. But documentation in this subject really is bad..  :roll: <br />
+<br />
+Here is a quick and dirty example app that uses TIOCSTI:<br />
+<br />
+<br />
+#include &amp;lt;stdio.h&gt;<br />
+#include &amp;lt;stdlib.h&gt;<br />
+#include &amp;lt;fcntl.h&gt;<br />
+#include &amp;lt;sys/ioctl.h&gt;<br />
+<br />
+int main &#40;int argc, char *argv&#91;&#93;&#41;<br />
+&#123;<br />
+    char *cmd, *nl = &quot;\n&quot;;<br />
+    int i, fd = 0;<br />
+<br />
+    if &#40;argc &gt; 1&#41; &#123;<br />
+        cmd = argv&#91;1&#93;;<br />
+    &#125; else &#123;<br />
+        cmd = &quot;ls&quot;;<br />
+    &#125;<br />
+<br />
+    for &#40;i = 0; cmd&#91;i&#93;; i++&#41;<br />
+        ioctl &#40;fd, TIOCSTI, cmd+i&#41;;<br />
+<br />
+    ioctl &#40;fd, TIOCSTI, nl&#41;;<br />
+<br />
+    exit &#40;0&#41;;<br />
+&#125;<br />
+<br />
+<br />
+It will execute the given command, by outputing a newline after it...<br />
+<br />
+Correct, here is the point. In my example code I notted exactily it, I need to run this ioctl(), for example, if you write the \n with write() you will see that the command (ls for example) will not be executed. Exchange in your code the <br />
+<br />
+ioctl (fd, TIOCSTI, nl); <br />
+<br />
+by:<br />
+<br />
+write (fd, nl, sizeof(nl));<br />
+<br />
+And you will notice that the command ISN'T executed even with &quot;\n&quot;. This ioctl() &quot;make&quot; something different that only &quot;write&quot; at a device... <br />
+<br />
+What I trying to understand is, what it does ? Can I does it WITHOUT ioctl() (with write() for example) ? <br />
+<br />
+<br />
+It just uses FD 0 (stdin) to execute in your current tty, but you<br />
+should be able to open() any other tty and have it work on that<br />
+one,  instead...<br />
+<br />
+Yes, rigth my code above is able to send commands to other tty's too. But I want to be able to *spy* other shell, so I need open that and be able to get this commands (read()) and I need to write it to my stdout and execute it in the other tty (spyed). Understand my idea ? :)<br />
+<br />
+I suspect your problems stem from your messing with the tty<br />
+state via tcsetattr()...  I'm unclear as to why you do that...<br />
+<br />
+Well, I commented the lines of tcsetattr() and the same yet happen... I want to do this, because it can be very useful for my administration. For example, if i setup a honeypot i can use it in all my shell's to spy what attackers are making at my machine, I can use it to administrate users in my server with strange actions, and more.. ;)<br />
+<br />
+Regards,</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">RobSeace</div><div class="date">10-18-2004, 11:46 PM</div></div><div class="posttext">I need to run this ioctl(), for example, if you write the \n with write() you will see that the command (ls for example) will not be executed.<br />
+<br />
+<br />
+Right...  Of course, that's correct...  Just write()'ing to the tty will<br />
+simply output data to be displayed on it...  What you're trying to do<br />
+is simulate input on the tty, as if they typed it...  For that, the only<br />
+approach that I know about is stuff like ioctl(SIOCSTI)...  You're<br />
+unlikely to find any method using simple write() that'd ever work...<br />
+But, I'm not sure why there's a problem using ioctl(), either...  It<br />
+does seem to work just fine...  I don't understand why you don't<br />
+want to use it...  If there's some problem with displaying the chars<br />
+to your screen before sending them to the target tty, then I'd say<br />
+the problem lies somewhere other than the ioctl()...</div></div><hr />
+
+
+<div id="copyright">vBulletin&reg; v3.6.5, Copyright &copy;2000-2008, Jelsoft Enterprises Ltd.</div>
+</div>
+</body>
+</html>

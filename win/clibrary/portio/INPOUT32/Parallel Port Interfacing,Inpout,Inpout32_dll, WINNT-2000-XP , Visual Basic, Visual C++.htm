@@ -1,0 +1,379 @@
+<html>
+<head>
+
+<META NAME="keywords" CONTENT="windows 2000 , windows xp , parallel ,port ,interfacing ,windows , NT ,2000 , lpt , driver , inp , outp , inpout , VB , visual basic , vc++ , visual c++ , dll , xp">
+<META NAME="description" CONTENT="new inpout32.dll for windows nt / 2000 . this dll will solve the problems arising from the use of Inp() and Outp() functions in WIN NT">
+
+
+<TITLE>Parallel Port Interfacing,Inpout,Inpout32.dll, WINNT/2000/XP , Visual Basic, Visual C++</TITLE>
+	
+<style type="text/css">
+	<!--
+	body {font-family: Arial; font-size: xx-small; color: black; background: #eeeeee;}
+	.hand {cursor: hand; color: black;}
+	a:link {color: blue; text-decoration: underline}
+	a:visited {color: darkred; text-decoration: none}
+	a:active {color: green; text-decoration: none}
+	a:hover {text-decoration: underline}
+	.1a {color: black; text-decoration: none; font-size: 18pt; font-weight: bold}
+	//-->
+</style>
+
+<link rel="STYLESHEET" type="text/css" href="style.css">
+
+<script language="JavaScript">
+	<!--
+		function Menu(wich)
+		{
+			// silver is the background color of the mouseover of the menu
+			wich.style.background = "#d9f5fb";
+			// Blue is the color of the text of the mouseoverof the menu
+			wich.style.color = 'blue';
+		}
+		function MenuOut(wich)
+		{
+			wich.style.background = '';
+			wich.style.color = 'black';
+		}
+		function ChangePage(url)
+		{
+			window.location.href = url;
+		}
+	//-->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" bottomMargin="0" leftMargin="1" rightMargin="1" topMargin="1" marginwidth="1" marginheight="1">
+
+<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" class="maintable">
+<tr>
+<td width="105px" valign="top">
+
+
+<table width="120px"  class="menuleft" cellpadding=3>
+
+	<tr>
+		<td style="font-size: 9pt; font-weight: bold; background: #0a20b8; background-repeat: repeat-y; background-attachment: scroll; color: white; border-bottom: 1px solid black; background-position: right">
+		Contents
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td id="m1" onMouseOver="Menu(m1)" onMouseOut="MenuOut(m1)" onClick="ChangePage('index.htm')" class="hand"><b>Home</b><br></td>
+	</tr>
+	
+		
+	<tr>
+		<td id="m2" onMouseOver="Menu(m2)" onMouseOut="MenuOut(m2)" onClick="ChangePage('parallelport1.htm')" class="hand"><b>Parallel Port</b></td>
+	</tr>
+	
+		
+	<tr>
+		<td id="m3" onMouseOver="Menu(m3)" onMouseOut="MenuOut(m3)" onClick="ChangePage('inpout32.htm')" class="hand"><b>Inpout32</b></td>
+	</tr>
+	
+		
+	<tr>
+		<td id="m4" onMouseOver="Menu(m4)" onMouseOut="MenuOut(m4)" onClick="ChangePage('dll_tutorial1.htm')" class="hand"><b>Dll Tutorial</b></td>
+	</tr>
+	
+	<tr>
+		<td id="m5" onMouseOver="Menu(m5)" onMouseOut="MenuOut(m5)" onClick="ChangePage('dsp_intro1.htm')" class="hand"><b>DSP tutorial</b></td>
+	</tr>
+	
+	<tr>
+		<td id="m6" onMouseOver="Menu(m6)" onMouseOut="MenuOut(m6)" onClick="ChangePage('digfilt.htm')" class="hand"><b>Digital Filters</b></td>
+	</tr>
+	
+	<tr>
+		<td id="m7" onMouseOver="Menu(m7)" onMouseOut="MenuOut(m7)" onClick="ChangePage('convolution.htm')" class="hand"><b>Convolution</b></td>
+	</tr>
+
+	<tr>
+		<td id="m8" onMouseOver="Menu(m8)" onMouseOut="MenuOut(m8)" onClick="ChangePage('dft.htm')" class="hand"><b>Discrete Fourier Transform</b></td>
+	</tr>
+
+	<tr>
+		<td id="m9" onMouseOver="Menu(m9)" onMouseOut="MenuOut(m9)" onClick="ChangePage('fft.htm')" class="hand"><b>Fast Fourier Transform</b></td>
+	</tr>
+	
+		<tr><td><hr color = "#42450b" size="1"></td></tr>
+		
+	<tr>
+		<td>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6974310080265953";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_type = "text";
+google_ad_channel ="2133780614";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	 	</td>
+	</tr>
+	
+
+</table>
+
+
+</td>
+<td valign="top" style="font-family: Arial; font-size: xx-small">
+
+<table width="100%" class="header" cellspacing="0">
+	<tr>
+		<td><p class="1a" align="left">Logix4u.net </p></td>
+
+
+			</tr>
+</table>
+
+<table width="100%" class="maindoc" cellspacing="0" cellpadding=5>
+	
+
+<!-- main document starts //-->	
+	<table width="100%" style="background: #fafafa; border: 1px solid black; font-family: Arial; font-size: 10pt; color: black" cellspacing="0" cellpadding=5>
+	<tr>
+		<td style="font-size: 10pt; font-weight: bold; background: #2F97CF; background-repeat: repeat-y; background-attachment: scroll; color: white; border-bottom: 1px solid black; background-position: right">
+		Home
+		</td>
+		</tr>
+
+
+
+	<td>
+
+		 <font face="Arial" size="2pt">
+		<!-- PLACE CONTENT HERE//-->
+
+
+                 <!-- REPLACE CONTENT HERE//--> 
+
+
+<table width = "100%" class="maindoc" >
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="inpout32.htm"><u>Inpout32.dll for Windows 98/2000/NT/XP</u></A></U></B><BR></FONT> <br>
+A versatile Dynamic Link Library for parallel port interfacing. Works seam less with all versions of windows (WIN 98, NT, 200 and XP). Compatible with inpout32.dll comes with the book <a href="http://www.amazon.com/exec/obidos/ASIN/0965081915/logix4u-20">Parallel Port Complete</a> without any modification. Download it for free with source code. <BR>
+</td>
+<td>
+<A href="inpout32.htm"><img src ="parerrorsm.gif" align="right" border="1"></a>
+</td>
+</table>
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="dll_tutorial1.htm"><u>A Tutorial on creating DLLs with VC++</u></A></U></B><BR></FONT> <br>
+How to create a WIN32 DLL from the scratch, A beginners tutorial. This tutorial explains each steps involved in writing a WIN32 Dynamic Link Library, with the help of sample programs. This tutorial also includes directions on how to call the exported functions using Visual Basic.<BR>
+</td>
+<td>
+<A href="dll_tutorial1.htm"><img src ="pic_dll2sm.jpg"  align="right" border="1"></a>
+</td>
+</table>
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="parallelport1.htm"><u>A tutorial on Parallel port Interfacing</u></A></U></B><BR></FONT> <br>
+ A tutorial on Parallel port interfacing and programming for beginners. This tutorial covers both hardware and software aspects about programming the parallel port. It also includes a sample schematic and test program in Visual C++. You can make your first parallel port application running straight away.<BR>
+</td>
+<td>
+<A href="parallelport1.htm"><img src ="parallelsm.jpg" align="right" border="1"></a>
+</td>
+</table>          
+                
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="inpout_theory.htm"><u>How Inpout32.dll works ?</u></A></U></B><BR></FONT> <br>
+  Tried the Inpout32.dll..? then Learn how Inpout32.dll does the things. This brief tutorial explains about the working of Inpout32.dll in simple steps, with the help of a flow chart. This could help you much if you want to modify the Inpout32 dll source code<BR>
+</td>
+<td>
+<A href="inpout_theory.htm"><img src ="inpth.jpg" align="right" border="1"></a>
+</td>
+</table> 
+
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="dsp_intro1.htm"><u>DSP tutorial</u></A></U></B><BR></FONT> <br>
+  This basic DSP tutorial will help you understand what is Digital Signal Processing, what a Digital Signal Processing System is made of and some theoretical matters like sampling theorem aliasing etc.. The DSP system components like Analog to Digital Converter, Digital to Analog Converter are also is introduced. remember this is for beginners..! not for veterans<BR>
+</td>
+<td>
+<A href="dsp_intro1.htm"><img src ="sampleds.jpg" align="right" border="1"></a>
+</td>
+</table> 
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="digfilt.htm"><u>Digital filters</u></A></U></B><BR></FONT> <br>
+  An introductory tutorial about digital filters , one of the most important applications of DSP !. It explains about a  basic digital filter system with a block diagram . Two sample programs written in visual basic also available. This programs will let you understand about digital filtering through visual graphs.<BR>
+</td>
+<td>
+<A href="digfilt.htm"><img src ="sinewaves.jpg" align="right" border="1"></a>
+</td>
+</table> 
+
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="convolution.htm"><u>Convolution sample program in Visual Basic</u></A></U></B><BR></FONT> <br>
+  Convolution is one of the fundamental processing method used in Digital Signal Processing systems. The process of convolution combines two signals and produces a third signal. You can learn about convolution here with the help of a Sample program written in Visual Basic<BR>
+</td>
+<td>
+<A href="convolution.htm"><img src ="imprespsm.jpg" align="right" border="1"></a>
+</td>
+</table> 
+
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="dft.htm"><u> Visual Basic sample program for Discrete Fourier Transform</u></A></U></B><BR></FONT> <br>
+  Fourier Transformation is used to transform data in time domain to frequency domain and vice versa. The forward fourier transform or simply fourier transform is used for time domain to frequency domain transformation. Where as Inverse fourier transform is used for reverse process. Here you can find a visual basic sample program implementing fourier transform using correlation method.<BR>
+</td>
+<td>
+<A href="dft.htm"><img src ="dftsm.jpg" align="right" border="1"></a>
+</td>
+</table>             
+                
+	                
+<table width = "100%" class="maindoc">
+<tr>
+<td>
+<FONT color="#4ebafa"><B><U><A href="fft.htm"><u>Visual Basic program for Fast Fourier Transform</u></A></U></B><BR></FONT> <br>
+	Though discrete fourier transform can convert time domain data in to frequency domain accurately, it has an unavoidable drawback. It is the inefficiency of the algorithm which makes the processing much time consuming. As a solution to this problem, Fast Fourier Transform (FFT) is invented. FFT is much faster and efficient than DFT. the sample program written in Visual Basic lets you generate different waveforms, and examine its spectrum.
+ <BR>
+</td>
+<td>
+<A href="fft.htm"><img src ="sincsm.jpg" align="right" border="1"></a>
+</td>
+</table>             
+            
+
+				
+		<!-- PLACE CONTENT HERE//-->	
+		</font>
+		<hr size="2%" width="100%" color="#66ccff">
+
+		<script type="text/javascript"><!--
+google_ad_client = "pub-6974310080265953";
+google_ad_width = 728;
+google_ad_height = 15;
+google_ad_format = "728x15_0ads_al";
+google_ad_channel ="9022756988";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+		
+<hr size="2%" width="100%" color="#66ccff">
+
+
+		</td>
+	</tr>
+
+
+	<tr>
+	<td align="Center">
+
+
+	</td>
+	</tr>
+
+</table>
+	
+	
+<!-- main document ends //-->	
+		
+
+
+
+</td>
+<td width="105px" align="right" valign="top">
+
+<table  height = "100%" width="105px" class="menuright" cellpadding=3>
+	<tr>
+		<td align="center" style="font-size: 9pt; font-weight: bold; background: #0a20b8; background-repeat: repeat-y; background-attachment: scroll; color: white; border-bottom: 1px solid black; background-position: right">
+		<img src="mail.bmp">
+		</td>
+	</tr>
+	
+
+
+	<tr>
+
+	<td valign="top">
+<script type="text/javascript"><!--
+ch_client = "logix4u";
+ch_width = 120;
+ch_height = 600;
+ch_color_border = "#99FFFF";
+ch_non_contextual = 1;
+ch_nosearch = 1 ;
+var ch_queries = new Array( "dll", "visual studio", "interfacing", "device driver", "fourier", "visual basic", "microprocessor", "microcontroller", "Amplifiers and Preamps", "sub woofer", "GPS", "memory", "rom", "C Compiler For PIC Microcontroller" );
+var ch_selected=Math.floor((Math.random()*ch_queries.length));
+ch_query = ch_queries[ch_selected];
+//--></script>
+<script  src="http://scripts.chitika.net/eminimalls/mm.js" type="text/javascript">
+</script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+<center>
+	<A HREF="http://www.ipstat.com/cgi-bin/stats?name=logix4u">
+	<IMG SRC="http://www.ipstat.com/cgi-bin/ipstat?name=logix4u" HEIGHT="32" WIDTH="32" BORDER="0">
+	</A> </center>
+
+	</td>
+
+	</tr>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td>
+<table width="100px" style="background: #eeeeee; border: 0px solid black; font-family: Arial; font-size: xx-small; color: black" cellspacing="0">
+	<tr>
+		<td> </td>
+	</tr>
+</table>
+
+</td>
+<td>
+
+
+
+</td>
+
+<tr>
+
+<table width="100%" style="background: #fafafa; border: 1px solid black; font-family: Arial; font-size: xx-small; color: black" cellspacing="0">
+	
+	<td>
+	
+		<td align="Center"><font color="#001de2"> <a href="index.htm" >[Home]</a></font></td>
+	</td>
+
+</table>
+
+</tr>
+
+</body>

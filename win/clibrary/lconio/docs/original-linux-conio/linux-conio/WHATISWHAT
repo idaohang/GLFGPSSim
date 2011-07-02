@@ -1,0 +1,12 @@
+The linux-conio Version 1.01 by Fractor/Mental Explosion consist of:
+./ChangeLog 	  Revision history
+./INSTALL 	  How to install...
+./Makefile	  The Makefile
+./README	  Please read this file !
+./README.tex      LaTeX Version of the README (Better use this)
+/.README.toc      Needed by README.tex
+./conio.c	  Conio.c the library in source-form
+./conio.h	  Conio.h the include file
+./conioprg.prj	  A demo project-file for xwpe
+./libconio.a	  The library (precompiled)
+./WHATISWHAT	  Discription of the files.

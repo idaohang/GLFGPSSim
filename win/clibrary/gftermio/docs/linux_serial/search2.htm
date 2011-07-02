@@ -1,0 +1,425 @@
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<BASE HREF="http://www.webservertalk.com/archive107-2006-4-1487126.html"><table border=1 width=100%><tr><td><table border=1 bgcolor=#ffffff cellpadding=10 cellspacing=0 width=100% color=#ffffff><tr><td><font face="" color=black size=-1>This is <b><font color=#0039b6>G</font> <font color=#c41200>o</font> <font color=#f3c518>o</font> <font color=#0039b6>g</font> <font color=#30a72f>l</font> <font color=#c41200>e</font></b>'s <a href="http://www.google.com/intl/en/help/features.html#cached"><font color=blue>cache</font></a> of <a href="http://www.webservertalk.com/archive107-2006-4-1487126.html"><font color=blue>http://www.webservertalk.com/archive107-2006-4-1487126.html</font></a> as retrieved on Dec 19, 2007 06:15:51 GMT.<br>
+<b><font color=#0039b6>G</font> <font color=#c41200>o</font> <font color=#f3c518>o</font> <font color=#0039b6>g</font> <font color=#30a72f>l</font> <font color=#c41200>e</font></b>'s cache is the snapshot that we took of the page as we crawled the web.<br>
+The page may have changed since that time.  Click here for the <a href="http://www.webservertalk.com/archive107-2006-4-1487126.html"><font color=blue>current page</font></a> without highlighting.<br>
+This cached page may reference images which are no longer available. Click here for the <A HREF="http://64.233.167.104/search?q=cache:DzUPi4EOwXEJ:www.webservertalk.com/archive107-2006-4-1487126.html+keyboard+buffer+stuffing+linux&hl=en&gl=us&strip=1"><font color=blue>cached text</font></a> only.<br>To link to or bookmark this page, use the following url: <code>http://www.google.com/search?q=cache:DzUPi4EOwXEJ:www.webservertalk.com/archive107-2006-4-1487126.html+keyboard+buffer+stuffing+linux&amp;hl=en&amp;ct=clnk&amp;cd=9&amp;gl=us</code></font><br><br><center><font size=-2><i>Google is neither affiliated with the authors of this page nor responsible for its content.</i></font></center></td></tr>
+<tr><td>
+<table border=0 cellpadding=0 cellspacing=0><tr><td><font face="" color=black size=-1>These search terms have been highlighted:&nbsp;</font></td><td bgcolor=#ffff66><b><font face="" color=black size=-1>keyboard&nbsp;</font></b></td><td bgcolor=#a0ffff><b><font face="" color=black size=-1>buffer&nbsp;</font></b></td><td bgcolor=#99ff99><b><font face="" color=black size=-1>stuffing&nbsp;</font></b></td><td bgcolor=#ff9999><b><font face="" color=black size=-1>linux&nbsp;</font></b></td></tr></table>
+</td></tr></table></td></tr></table>
+<hr>
+<div style="position:relative">
+<br>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="keywords" content="Examnotes, MCSE, MCSD, MCSE braindumps, Cisco certification exams, Oracle braindumps, Solaris braindumps">
+<title>Unix Programming - How to force keystrokes into the buffer on Unix</title>
+<link rel="stylesheet" href="/server.css" type="text/css">
+</head>
+<body><br><br>
+<div id="tops" align="center">This is Interesting: <a href="http://webservertalk.tradepub.com">Free IT Magazines</a>&nbsp;&nbsp;
+<script type="text/javascript"><!--
+google_ad_client = "pub-6314654110945947";
+google_ad_width = 468;
+google_ad_height = 15;
+google_ad_format = "468x15_0ads_al";
+google_ad_channel ="6973310210";
+google_color_border = "2B4271";
+google_color_bg = "FFFFCC";
+google_color_link = "000080";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div></div>
+<table border=0 cellpadding="5" cellspacing="0" width="90%" height="100%" align="center"><tr><td valign="top">
+
+<a href="http://www.webservertalk.com">Home</a> > <a href="http://www.webservertalk.com/archive.html">Archive</a> >  <a href=http://www.webservertalk.com/archive107.html>Unix Programming</a> > <a href=http://www.webservertalk.com/archive107-2006-4.html>April 2006</a> > <b>How to force keystrokes into the <b style="color:black;background-color:#a0ffff">buffer</b> on Unix</b><p>
+<br><br>
+<div align=center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-6314654110945947";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="9315981861";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000CC";
+google_color_url = "0000FF";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<br><br>
+You are viewing an archived Text-only version of the thread.
+To view this thread in it's original format and/or if you want to reply to
+this thread please <a href=http://www.webservertalk.com/message1487126.html>[click here]</a><p><div align="center"><center>
+<table width="90%" border=0 cellpadding="0" cellspacing="0">
+<tr><td width="100%">
+
+<table width="100%" border=0 bgcolor="#555576" cellspacing=1 cellpadding=4>
+<TR bgcolor="#333333">
+<TD valign="middle" width="175" nowrap> <font face="verdana,arial,helvetica" size="1"  color="#FFFF99"><B>Author</B></font></TD>
+<TD valign="middle" width="100%" id="NoIntelliText">
+<font face="verdana,arial,helvetica" size="1"  color="#FFFF99"><B>
+How to force keystrokes into the <b style="color:black;background-color:#a0ffff">buffer</b> on Unix</B></font>
+</TD></TR></table>
+
+</td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FFFFFF">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Kenny McCormack</B><p>2006-04-29, 7:14 pm</td></tr></table>
+</td><td valign="top" width="100%">I know there is a way to do this - that is, a system call that allows<br />
+you to push a character into the <b style="color:black;background-color:#ffff66">keyboard</b> <b style="color:black;background-color:#a0ffff">buffer</b> - but I can't seem to<br />
+find it now (checked man pages for tty, termio(s) on several systems).<br />
+<br />
+I found a workaround, with expect, like this:<br />
+<br />
+expect -c 'spawn program;expect something;send key;interact'<br />
+<br />
+but I'd prefer to avoid that as it brings in the overhead of expect and<br />
+a tty layer just to push one key.  Anyway, I think I did this a long<br />
+time ago and that it is TIOsomething.  Can anyone help?<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FCFCFC">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>David Schwartz</B><p>2006-04-29, 7:14 pm</td></tr></table>
+</td><td valign="top" width="100%"><br />
+"Kenny McCormack" &lt;gazelle@xmission.xmission.com&gt; wrote in message<br />
+news:e30i3r$huf$1@news.xmission.com...<font color="seagreen"><br />
+&gt;I know there is a way to do this - that is, a system call that allows<br />
+&gt; you to push a character into the <b style="color:black;background-color:#ffff66">keyboard</b> <b style="color:black;background-color:#a0ffff">buffer</b> - but I can't seem to<br />
+&gt; find it now (checked man pages for tty, termio(s) on several systems).<br />
+&gt;<br />
+&gt; I found a workaround, with expect, like this:<br />
+&gt;<br />
+&gt; expect -c 'spawn program;expect something;send key;interact'<br />
+&gt;<br />
+&gt; but I'd prefer to avoid that as it brings in the overhead of expect and<br />
+&gt; a tty layer just to push one key.  Anyway, I think I did this a long<br />
+&gt; time ago and that it is TIOsomething.  Can anyone help?</font><br />
+<br />
+I don't think you can avoid the overhead of a tty layer. If you don't<br />
+already have a tty, which would be the case if you were redirected from a<br />
+file or pipe, there would be nothing to push the character into.<br />
+<br />
+DS<br />
+<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FFFFFF">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Kenny McCormack</B><p>2006-04-30, 1:25 am</td></tr></table>
+</td><td valign="top" width="100%">In article &lt;e310u5$luf$1@nntp.webmaster.com&gt;,<br />
+David Schwartz &lt;davids@webmaster.com&gt; wrote:<font color="seagreen"><br />
+&gt;<br />
+&gt;"Kenny McCormack" &lt;gazelle@xmission.xmission.com&gt; wrote in message<br />
+&gt;news:e30i3r$huf$1@news.xmission.com... <br />
+&gt;<br />
+&gt;    I don't think you can avoid the overhead of a tty layer. If you don't<br />
+&gt;already have a tty, which would be the case if you were redirected from a<br />
+&gt;file or pipe, there would be nothing to push the character into.<br />
+&gt;<br />
+&gt;    DS</font><br />
+<br />
+No, no, this is an ordinary, interactive program I am dealing with.<br />
+Assume I have an app that is reading and writing the <b style="color:black;background-color:#ffff66">keyboard</b>, using<br />
+ncurses or something similar, and I want to push a keystroke to it.<br />
+<br />
+In fact, as you can tell from my earlier description, I just need to<br />
+press one key, then go back into regular interactive mode.<br />
+<br />
+I'm imagining pseudo-code like this:<br />
+<br />
+fork,exec new app<br />
+sleep(10 or something like that, to give the app time to initialize)<br />
+push key into <b style="color:black;background-color:#ffff66">keyboard</b> <b style="color:black;background-color:#a0ffff">buffer</b><br />
+exit (and let the app &#91;child program] continue to run)<br />
+<br />
+I'm not joking when I say that there is a way to do it, and that it is<br />
+called TIO&lt;something&gt;.  I just can't remember (or find in my man page<br />
+search) what that something is.<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FCFCFC">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Barry Margolin</B><p>2006-04-30, 1:25 am</td></tr></table>
+</td><td valign="top" width="100%">In article &lt;e30i3r$huf$1@news.xmission.com&gt;,<br />
+gazelle@xmission.xmission.com (Kenny McCormack) wrote:<br />
+<font color="seagreen"><br />
+&gt; I know there is a way to do this - that is, a system call that allows<br />
+&gt; you to push a character into the <b style="color:black;background-color:#ffff66">keyboard</b> <b style="color:black;background-color:#a0ffff">buffer</b> - but I can't seem to<br />
+&gt; find it now (checked man pages for tty, termio(s) on several systems).<br />
+&gt;<br />
+&gt; I found a workaround, with expect, like this:<br />
+&gt;<br />
+&gt; 	expect -c 'spawn program;expect something;send key;interact'<br />
+&gt;<br />
+&gt; but I'd prefer to avoid that as it brings in the overhead of expect and<br />
+&gt; a tty layer just to push one key.  Anyway, I think I did this a long<br />
+&gt; time ago and that it is TIOsomething.  Can anyone help?</font><br />
+<br />
+I think you're thinking of TIOCSTI -- I believe STI stands for Store<br />
+Terminal Input.<br />
+<br />
+--<br />
+Barry Margolin, barmar@alum.mit.edu<br />
+Arlington, MA<br />
+*** PLEASE post questions in newsgroups, not directly to me ***<br />
+*** PLEASE don't copy me on replies, I'll read them in the group ***<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FFFFFF">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Kenny McCormack</B><p>2006-04-30, 1:25 am</td></tr></table>
+</td><td valign="top" width="100%">In article &lt;barmar-9EAB5E.00314530042006@comcast.dca.giganews.com&gt;,<br />
+Barry Margolin  &lt;barmar@alum.mit.edu&gt; wrote:<font color="seagreen"><br />
+&gt;In article &lt;e30i3r$huf$1@news.xmission.com&gt;,<br />
+&gt; gazelle@xmission.xmission.com (Kenny McCormack) wrote:<br />
+&gt; <br />
+&gt;<br />
+&gt;I think you're thinking of TIOCSTI -- I believe STI stands for Store<br />
+&gt;Terminal Input.</font><br />
+<br />
+That sounds right.  Could you tell me where to find the documentation<br />
+for it on a <b style="color:black;background-color:#ff9999">Linux</b> system?  I thought it would be in "man 4 tty", but it<br />
+doesn't seem to be.<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FCFCFC">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Barry Margolin</B><p>2006-04-30, 1:25 am</td></tr></table>
+</td><td valign="top" width="100%">In article &lt;e31gos$7fn$1@news.xmission.com&gt;,<br />
+gazelle@xmission.xmission.com (Kenny McCormack) wrote:<br />
+<font color="seagreen"><br />
+&gt; In article &lt;barmar-9EAB5E.00314530042006@comcast.dca.giganews.com&gt;,<br />
+&gt; Barry Margolin  &lt;barmar@alum.mit.edu&gt; wrote: <br />
+&gt;<br />
+&gt; That sounds right.  Could you tell me where to find the documentation<br />
+&gt; for it on a <b style="color:black;background-color:#ff9999">Linux</b> system?  I thought it would be in "man 4 tty", but it<br />
+&gt; doesn't seem to be.</font><br />
+<br />
+Don't know where it is on <b style="color:black;background-color:#ff9999">Linux</b>, but that's where it is on my OS X<br />
+system:<br />
+<br />
+TIOCSTI char *cp<br />
+Simulate typed input.  Pretend as if the terminal<br />
+received the character pointed to by cp.<br />
+<br />
+If it's not there on <b style="color:black;background-color:#ff9999">Linux</b>, it may not implement this ioctl in the first<br />
+place.<br />
+<br />
+--<br />
+Barry Margolin, barmar@alum.mit.edu<br />
+Arlington, MA<br />
+*** PLEASE post questions in newsgroups, not directly to me ***<br />
+*** PLEASE don't copy me on replies, I'll read them in the group ***<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FFFFFF">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>noogie.brown@gmail.com</B><p>2006-04-30, 7:17 am</td></tr></table>
+</td><td valign="top" width="100%"><br />
+Kenny McCormack wrote:<font color="seagreen"><br />
+&gt; I know there is a way to do this - that is, a system call that allows<br />
+&gt; you to push a character into the <b style="color:black;background-color:#ffff66">keyboard</b> <b style="color:black;background-color:#a0ffff">buffer</b> - but I can't seem to<br />
+&gt; find it now (checked man pages for tty, termio(s) on several systems).<br />
+&gt;<br />
+&gt; I found a workaround, with expect, like this:<br />
+&gt;<br />
+&gt; 	expect -c 'spawn program;expect something;send key;interact'<br />
+&gt;<br />
+&gt; but I'd prefer to avoid that as it brings in the overhead of expect and<br />
+&gt; a tty layer just to push one key.  Anyway, I think I did this a long<br />
+&gt; time ago and that it is TIOsomething.  Can anyone help?</font><br />
+<br />
+Maybe not exactly what your looking for, but better to mention than not<br />
+I guess - ncurses has ungetch to do that sort of thing, but obviously<br />
+then you'd have to make your program use ncurses.<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FCFCFC">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Kenny McCormack</B><p>2006-04-30, 7:17 am</td></tr></table>
+</td><td valign="top" width="100%">In article &lt;1146397140.102951.190400@u72g2000cwu.googlegroups.com&gt;,<br />
+&lt;noogie.brown@gmail.com&gt; wrote:<font color="seagreen"><br />
+&gt;<br />
+&gt;Kenny McCormack wrote: <br />
+&gt;<br />
+&gt;Maybe not exactly what your looking for, but better to mention than not<br />
+&gt;I guess - ncurses has ungetch to do that sort of thing, but obviously<br />
+&gt;then you'd have to make your program use ncurses.</font><br />
+<br />
+One of the conditions is that the app is not re-compilable, i.e., no<br />
+source, i.e., a "black box".  If I could modify the app, I'd just modify<br />
+it so that it didn't need the keystroke to be pushed into it.  I.e., the<br />
+point is that the app has a misfeature that requires a keystroke in<br />
+order to disable (to disable the misfeature).<br />
+<br />
+Anyway, I'm beginning to like the Expect solution more and more as time<br />
+goes by.  Still wish I knew where to find this function in the <b style="color:black;background-color:#ff9999">Linux</b> man<br />
+pages.  (Yes, I'm pretty sure it *is* implemented in <b style="color:black;background-color:#ff9999">Linux</b>, just badly<br />
+documented; I could be wrong about this, of course)<br />
+<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FFFFFF">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Spoon</B><p>2006-04-30, 7:17 am</td></tr></table>
+</td><td valign="top" width="100%">Kenny McCormack wrote:<br />
+<font color="seagreen"><br />
+&gt; In article &lt;barmar-9EAB5E.00314530042006@comcast.dca.giganews.com&gt;,<br />
+&gt; Barry Margolin  &lt;barmar@alum.mit.edu&gt; wrote:<br />
+&gt; <br />
+&gt;<br />
+&gt;<br />
+&gt; That sounds right.  Could you tell me where to find the documentation<br />
+&gt; for it on a <b style="color:black;background-color:#ff9999">Linux</b> system?  I thought it would be in "man 4 tty", but it<br />
+&gt; doesn't seem to be.</font><br />
+<br />
+Kenny!<br />
+<br />
+Did you get tired of trolling in clc? :-) (Just kidding.)<br />
+<br />
+Google came up with a few interesting hits:<br />
+<br />
+<a href="http://www.die.net/doc/linux/man/man4/tty_ioctl.4.html" target="_blank">http://www.die.net/doc/<b style="color:black;background-color:#ff9999">linux</b>/man/man4/tty_ioctl.4.html</a><br />
+Faking input<br />
+TIOCSTI const char *argp<br />
+Insert the given byte in the input queue.<br />
+<br />
+<br />
+<a href="http://www.phrack.org/show.php?p=50&a=5" target="_blank">http://www.phrack.org/show.php?p=50&a=5</a><br />
+"<b style="color:black;background-color:#99ff99">Stuffing</b> keystrokes is not a problem, since we can use the TIOCSTI<br />
+ioctl to stuff keystrokes into the input stream."<br />
+<br />
+<br />
+<a href="http://www.google.com/search?q=TIOCSTI+ioctl+tty" target="_blank">http://www.google.com/search?q=TIOCSTI+ioctl+tty</a><br />
+<br />
+Regards.<br /></td></tr></table></td></tr>
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+<tr bgcolor="#FCFCFC">
+<TD width="175" valign="top" nowrap>
+
+<table width="100%" cellpadding="4" cellspacing="0" border="0">
+<tr><td width="100%"><B>Diomidis Spinellis</B><p>2006-04-30, 1:25 pm</td></tr></table>
+</td><td valign="top" width="100%">Kenny McCormack wrote:<font color="seagreen"><br />
+&gt; In article &lt;barmar-9EAB5E.00314530042006@comcast.dca.giganews.com&gt;,<br />
+&gt; Barry Margolin  &lt;barmar@alum.mit.edu&gt; wrote: <br />
+&gt;<br />
+&gt; That sounds right.  Could you tell me where to find the documentation<br />
+&gt; for it on a <b style="color:black;background-color:#ff9999">Linux</b> system?  I thought it would be in "man 4 tty", but it<br />
+&gt; doesn't seem to be.</font><br />
+<br />
+Grep is your friend for locating function and macro definitions.  To<br />
+find the include file where TIOCSTI is defined run something like:<br />
+<br />
+grep TIOCSTI /usr/include/**/*.h<br />
+<br />
+On a <b style="color:black;background-color:#ff9999">Linux</b> box I have access to the above command returns:<br />
+<br />
+/usr/include/asm-i386/ioctls.h:#define TIOCSTI          0x5412<br />
+/usr/include/asm-x86_64/ioctls.h:#define TIOCSTI                0x5412<br />
+/usr/include/<b style="color:black;background-color:#ff9999">linux</b>/compat_ioctl.h:COMPATIBLE_IOCTL(TIOCSTI)<br />
+<br />
+Similarly you can find the relevant manual page by running:<br />
+<br />
+cd /usr/share/man/man2<br />
+for i in *; do (zcat $i | grep TIOCSTI) && echo $i; done<br />
+<br />
+If the above fails (it didn't help me on the systems I tried it on), you<br />
+can read the corresponding kernel source code, look at manual pages of<br />
+other (hopefully better documented) systems, or Google for example code.<br />
+For TIOCSTI, see for<br />
+<a href="http://www.developerweb.net/forum/archive/index.php/t-3799.html" target="_blank">http://www.developerweb.net/forum/a...php/t-3799.html</a><br />
+<br />
+--<br />
+Diomidis Spinellis<br />
+Code Quality: The <a
+href='http://www.codecomments.com/Open_Source_Software/'>Open Source</a> Perspective (Addison-Wesley 2006)<br />
+<a href="http://www.spinellis.gr/codequality?cup" target="_blank">http://www.spinellis.gr/codequality?cup</a><br /></td></tr></table><!-- time zone and post buttons -->
+</td></tr>
+
+<tr><td width="100%">
+<table width="100%" bgcolor="#555576" border=0 cellspacing=1 cellpadding=4>
+
+<tr bgcolor="#FFFFFF">
+ <TD width="175" valign="top" nowrap>
+   <table width="100%" cellpadding="4" cellspacing="0" border="0">
+	<tr>
+		<td width="100%">Sponsored Links
+		</td>
+	</tr>
+   </table>
+ </td>
+
+ <td valign="top" width="100%">
+<BR/><BR/>
+<script type="text/javascript"><!--
+google_ad_client = "pub-6314654110945947";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_channel ="3963419352";
+google_ad_type = "text";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "000080";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+ <BR /><BR/>
+ </td>
+</tr></table>
+
+
+</td></tr>
+<!-- /Software Forum Last post -->
+
+
+</td></tr></table>
+</center></div>
+
+</td></tr><tr><td valign=bottom align="center"><script type="text/javascript" src="http://www.mcse.ms/mcse.js"></script><br><br><a href=http://www.freebraindumps.com>Free braindumps</a> | <a href="http://www.mcse.ms">Software forum</a> | <a href="http://www.droptable.com">Database administration forum</a><br><br>Copyright 2003 - 2007 webservertalk.com</td></tr></table>
+
+<SCRIPT language="javascript" src="http://examnotes.us.intellitxt.com/intellitxt/front.asp?IPID=924&MK=10&FG=0000FF"></SCRIPT>
+
+</BODY>
+</html>
+
+

@@ -1,0 +1,26 @@
+{ 
+ 
+var google_ads = new Array(); 
+var google_ad; 
+var google_radlinks = new Array(); 
+var google_radlink; 
+var google_info = new Object(); 
+google_ad = new Object(); 
+google_ad.n = 1; 
+google_ad.type = "image"; 
+google_ad.bidtype = "CPC"; 
+google_ad.targeting_type = "contextual"; 
+google_ad.url = "http://pagead2.googlesyndication.com/pagead/iclk?sa=l&amp;ai=BQF32I7tZSdeQF6OaaLOKoKcP1OK5jAHE0bfvCMCNtwGw4y0QARgBIOHmmwI4AFCPxfSiB2DJ3q-I9KPAEKABusyo_QOyAQ1mcmVzaG1lYXQubmV0ugEJNzI4eDkwX2pzyAEC2gEzaHR0cDovL2ZyZXNobWVhdC5uZXQvcHJvamVjdHMvc2ltcGxlc29ja2V0c2xpYnJhcnkvgAIBqAMB6AO3AugDH-gDuQLoAyD1AwAAAAT1AwQAAACYBAA&amp;num=1&amp;adurl=http://www.zmanda.com&amp;client=ca-ostg_js"; 
+google_ad.visible_url = "Zmanda.com"; 
+google_ad.image_url = "http://pagead2.googlesyndication.com/pagead/imgad?id=CMHf0Z3P2dKgSxDYBRhPMggP__qPOePWSw"; 
+google_ad.image_width = "728"; 
+google_ad.image_height = "79"; 
+google_ads[0] = google_ad; 
+google_info.feedback_url = "http://services.google.com/feedback/abg?url=http://freshmeat.net/projects/simplesocketslibrary/&amp;hl=en&amp;client=ca-ostg_js&amp;adU=Zmanda.com&amp;adT=ImageAd&amp;done=1"; 
+if (window.google_ad_request_done) { 
+google_ad_request_done(google_ads); 
+} 
+if (window.google_radlink_request_done) { 
+google_radlink_request_done(google_radlinks); 
+} 
+}
