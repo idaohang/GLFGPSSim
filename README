@@ -14,7 +14,9 @@ accelerated faster than that for screen display or file output.
 
 The script will fly in 3D space between a provided list of timestamped waypoints.  The waypoints are hardcoded in the "open_script" function.
 
+-------------------------------------------------------------------------------
 Quick Start for Arduino, using builtin demo waypoints:
+
 1. Set the baud rate for GPS data output on arduino builtin UART port.  
 	#define BAUD_RATE 57600
 	Set to an Arduino Serial.print recognized baud rate number (typically 4800 for NMEA GPS stuff)
@@ -24,6 +26,7 @@ Quick Start for Arduino, using builtin demo waypoints:
 	Comment this out if you want it as fast as it can generate it (usually limited by baud rate)
 
 3. Upload the code to Arduino.  Resetting arduino will restart the output from the beginning of the waypoints list.
+-------------------------------------------------------------------------------
 
-
+The testdata folder contains full multi-day output from the program, resulting in 50mb text files of GPS strings.
 	
