@@ -1,6 +1,10 @@
 /* GPSSIM -- emulate output of a GPS unit as if it were undergoing a scripted balloon flight  
 */
 
+/* defining SPECIAL_MODEL here will set up a diagnostic flight model with linear changes 
+   to lat & long, but no change in altitude, to allow simpler sonar ranging test */
+#define SPECIAL_MODEL
+
 /* Define ARDUINO here for Arduino or Diavolino version -- otherwise assume Windows or Linux */
 /* #define ARDUINO */
 #define ARDUINO
@@ -22,7 +26,7 @@
   Boston, MA 02111-1307, USA.
 */
 
-/* GPSSIM Release version 1.03 -- 03/14/2011 Gary L. Flispart (GLF) for LVL1 White Star Balloon Group
+/* GPSSIM Release version 1.03 -- 07/08/2011 Gary L. Flispart (GLF) for LVL1 White Star Balloon Group
    
        GPSSIM outputs a stream of simulated GPS data to the serial port which 
        matches a simulated balloon flight, including latitude, longitude, altitude,
@@ -125,13 +129,14 @@
 		 10 Mar 2011 GLF (Gary L. Flispart)
                     Release version 1.02 -- Fixed bug in RMC and GSA records which
                                      incorrectly identified "no fix" data as A=ACTIVE instead
-                                     of V=VOID as desired.  Also added arbitrary extra days to 
-                                     original flight script to force a 72+ hour simulation,
-                                     per request of balloon team.
-
-		 14 Mar 2011 GLF (Gary L. Flispart)
-                    Release version 1.03 -- Added  "#define PERFECT_SAT_FIXES" to
-                    allow simulation with no dropouts, per request of ballooon team.
+                                     of V=VOID as desired. 
+									 
+		 8 Jul 2011 GLF (Gary L. Flispart)
+                    Release version 1.03 -- Add support for Sonar ranging altitude modifier shield for Arduino
+                                     Auto-detects existence of Sonar ranging shield -- if not present, altitude
+									 is as previously modeled -- if sonar exists, add an offset (about -240 to +268) 
+									 to modeled altitude to support realtime testing of ballast mockup  
+									 
 */
 
 /*
@@ -580,9 +585,6 @@ NOTE:  The GPSSIM program will only output the sentences GPRMC, GPGSA, and GPGGA
    just a FEATURE <grin> dependent on the available precision.
 */   
 
-/* If the following is defined, avoid simulation of poor satellite conditions */
-#define PERFECT_SAT_FIXES
-
 
 #ifdef ARDUINO
 #define BUFFLIMIT 28
@@ -707,6 +709,75 @@ void check_mem() {
   free(stackptr);      // free up the memory again (sets stackptr to 0)
   stackptr =  (uint8_t *)(SP);           // save value of stack pointer
 }
+
+
+/* --- Real hardware effect under Arduino only -- SONAR ranging for test mockup --- */
+
+/* The GLF Sonar shield uses the LV-MaxSonar-EZ4 High Performance Sonar Range Finder (www.maxbotix.com) 
+   module, with connections to +5V, GND, AN, BW, TX, and RX.   The GLF shield as currently wired allows 
+   the detector to run ranging continuously.  Pin D7 on the Arduino/Diavolino is  wired to GND, 
+   to allow detection of the board by software (D7 as input, internally pulled high, detect LOW, indicating 
+   board plugged in).  The analog output (AN) of the detector board is  wired to pin A0 on the 
+   Arduino/Diavolino.   The expected readings on the A0 pin should range from 11 at a distance of 6 inches 
+   or less to 508 at a distance of 254 inches or more.   
+
+   Detector's RS-232 option is not connected, so applications may use the RS-232 port for other things or 
+   at other baud rates than 9600.
+*/   
+   
+/* 07/07/2011 Gary L. Flispart (GLF) for LVL1 
+   Polling of LV-MaxSonar-EZ4 High Performance Sonar Range Finder on GLF shield */
+
+/* pins to use on Arduino (or Diavolino) */
+#define SONAR_ANALOGPIN 0
+#define SONAR_INSTALLED_PIN 7
+
+int init_sonar_sensor(void)
+  {
+   pinMode(SONAR_INSTALLED_PIN,INPUT);
+   digitalWrite(SONAR_INSTALLED_PIN,HIGH);  /* enable pullup resistor */
+   if (digitalRead(SONAR_INSTALLED_PIN) == HIGH)
+     {
+      return 0; 
+     }
+   return 1;	 
+  }
+  
+
+double sonar_altitude_offset(void)
+  {
+   unsigned int val;
+   double dval;
+  
+   /* Assume sonar ranger is pointed down toward floor.
+      Pretend that balloon is floating at some altitude in meters.
+      If sonar ranger moves down (closer to floor), altitude in meters 
+      should pretend to go down, and likewise if ranger goes away from floor,
+      altitude in meters should go up.  Arbitrarily exaggerate the scale so 
+      that inches seem like meters of altitude difference.  The returned value 
+      should be ADDED to any prior (interpolated) estimate of altitude.  
+      If no ranger installed, no offset (0.0) will be returned.
+   */
+
+   /* ensure that a new reading is taken by waiting 1/10 second */   
+   delay(100);  
+   if (digitalRead(SONAR_INSTALLED_PIN) == HIGH)
+     {
+      /* no SONAR board installed */
+      return 0.0; 
+     }
+
+   val = analogRead(SONAR_ANALOGPIN); /* read the sonar ranging value -- assume 
+                                         encoded from 6 inches to 254 inches */
+   dval = val / 2.0;   /* Assume center of "balloon" flight is level with the
+                            modeled altitude (or the ground) -- call this 0 meters 
+                            offset. Any height above this is scaled such that 
+                            1 real inch is treated as 1 returned meter of altitude offset.
+                         */ 
+   return dval;	 
+  } 
+
+
 
 /* Arduino only -- include support available in other libraries under Windows/Linux */
 
@@ -1044,6 +1115,33 @@ char x_work[BUFFLIMIT];
 
 /* Size of doubles in Windows/Linux is 64 bits */
 #define VERYBIG 1E+99
+
+
+/* --- Dummy version of sonar ranging for Windows or Linux -- actual hardware only pertinent to Arduino --- */
+
+/* 07/07/2011 Gary L. Flispart (GLF) for LVL1  */
+   
+int init_sonar_sensor(void)
+  {
+  }
+  
+
+double sonar_altitude_offset(void)
+  {
+   /* Assume sonar ranger is pointed down toward floor.
+      Pretend that balloon is floating at some altitude in meters.
+      If sonar ranger moves down (closer to floor), altitude in meters 
+      should pretend to go down, and likewise if ranger goes away from floor,
+      altitude in meters should go up.  Arbitrarily exaggerate the scale so 
+      that inches seem like meters of altitude difference.  The returned value 
+      should be ADDED to any prior (interpolated) estimate of altitude.  
+      If no ranger installed, no offset (0.0) will be returned.
+    */
+   return 0.0; 
+  } 
+
+
+/* Used for time processing under Windows or Linux */
 
 void wait_seconds(int secs)
   {
@@ -1796,6 +1894,17 @@ void open_script(void)
 #else 
  unsigned long date_time[] =   /* NOTE:  MUST avoid leading zeros -- they make OCTAL constants */
 #endif 
+
+#ifdef SPECIAL_MODEL
+/* special diagnostics model to keep altitude level at 10500 meters */
+  {
+   100308,  14000, 
+   130308, 185100,        /* including this endpoint makes simulation last 1 1/2 days */
+   0,0                    /* 0 date signals end of list */
+  };
+
+#else
+/* normal flight model based on SNOX IV flight, with modifications */
   {  
    100308,  14000, 
    100308,  14100, 
@@ -1917,6 +2026,8 @@ void open_script(void)
     
    0,0                    /* 0 date signals end of list */
   };
+  
+#endif    /* special or normal model */
 
 
 /* ARDUINO ISSUE if space is at a premium, try moving these tables to flash */
@@ -1926,6 +2037,18 @@ void open_script(void)
 #else 
  double lat_long_alt[]  = 
 #endif 
+
+#ifdef SPECIAL_MODEL
+/* special diagnostics model to keep altitude level at 10500 meters */
+  {
+   3557.749, -8352.413,   10500.0,
+   5019.496,  0240.950,  10500.0,     /* including this endpoint makes simulation last 1 1/2 days */
+
+   -1.0, -1.0, -1.0                  /* dummies for end of list */  
+  };
+
+#else
+/* normal flight model based on SNOX IV flight, with modifications */
   {
    3557.749, -8352.413,   256.0,
    3557.748, -8352.413,   257.0,
@@ -2048,6 +2171,7 @@ void open_script(void)
    -1.0, -1.0, -1.0                  /* dummies for end of list */  
   };
 
+#endif    /* special or normal model */
 
 
 void close_script(void)
@@ -2430,10 +2554,8 @@ int sim_satellites(int forcenum, double *hdpos, double *vdpos, double *pdpos)
 
    if (randval == 0)
      {
-      #ifndef PERFECT_SAT_FIXES
-         numsats = 2; 
-         flt_fixtype = 1;
-      #endif      /* otherwise remains 4 */
+      numsats = 2; 
+      flt_fixtype = 1;
      }
    if ((randval > 0) && (randval <= 6))
      {
@@ -2579,6 +2701,7 @@ int process_script(void)
    
    int firstloop;
 
+   double sonar_offset = 0.0;
 
    double linear_x, linear_y, linear_z;
 
@@ -2826,6 +2949,11 @@ int process_script(void)
 				 } 
 			#endif
 
+			/* in REALTIME mode, get any ranging data from Sonar sensor as offset to z altitude */
+			sonar_offset = sonar_altitude_offset();
+			
+		 #else
+			sonar_offset = 0.0;
          #endif  
 
         /* NOTE: Workaround is needed for lack of printf() floats in standard Arduino software 
@@ -2856,7 +2984,6 @@ int process_script(void)
 
          /* keep satellite list stable for about a minute or two, then randomly change list */
 
-      #ifndef PERFECT_SAT_FIXES             
          if (flt_cyclect == 0)  /* if it's time for a long dropout... */
            {
             /* SPECIAL -- force extended dropout period every 6 hours or so */
@@ -2868,28 +2995,23 @@ int process_script(void)
             if (flt_dropoutct >= DROPOUT_SAT_SECONDS)
               {
                flt_dropoutct = 0;
-               flt_cyclect++;
+               flt_cyclect++; 
                nsats = sim_satellites(3, &hdilpos, &vdilpos, &pdilpos);
               }
            }
          else
            {
-      #else
-         if (1)
-           {
-      #endif  
             flt_stablect++;
             if (flt_stablect >= STABLE_SAT_SECONDS)
               {
                flt_stablect = 0; 
     
-#ifndef PERFECT_SAT_FIXES
                flt_cyclect++;
                if (flt_cyclect >= DROPOUT_CYCLES)
                  {
                   flt_cyclect = 0; 
                  }
-#endif    
+    
                /* randomly simulate a list of satellites visible */  
                nsats = sim_satellites(0, &hdilpos, &vdilpos, &pdilpos);
               }
@@ -2968,7 +3090,7 @@ int process_script(void)
 #endif
 
          dtostrf_chop(hdilpos,-3,1,st_hdilpos);
-         dtostrf_chop(z,-3,1,st_z);
+         dtostrf_chop((z+sonar_offset),-3,1,st_z);
          dtostrf_chop(geoid_height,-3,1,st_geoid_height);
   
   
@@ -3062,9 +3184,12 @@ void setup()                    // run once, when the sketch starts
  Serial.begin(BAUD_RATE);
  
  #ifdef DEBUG_OUTPUT
-    serial_puts("GPSSIM 1.03 -- GLF 03/14/2011 for LVL1 -- GPS NMEA Output Emulator\r\n");
+    serial_puts("GPSSIM 1.03 -- GLF 07/08/2011 for LVL1 -- GPS NMEA Output Emulator\r\n");
  #endif 
-  
+
+ /* init any Sonar altitude simulator here */
+ init_sonar_sensor();
+ 
  /* main section of original Windows GPSSIM can largely go here */
 
  open_script();
@@ -3116,7 +3241,7 @@ main(int argc, char *argv[])
 
  double val;
 
- printf("\nGPSSIM 1.03 -- GLF 03/14/2011 for LVL1 -- GPS NMEA Output Emulator\n"
+ printf("\nGPSSIM 1.03 -- GLF 07/08/2011 for LVL1 -- GPS NMEA Output Emulator\n"
           "--------------------------------------------------------------------------\n");  
  
  if (argc > 1)
